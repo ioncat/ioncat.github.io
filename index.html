@@ -19,7 +19,7 @@
 ║                                                                ║
 ╚════════════════════════════════════════════════════════════════╝
 -->
-<html data-theme="dark" lang="en">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,6 +29,23 @@
 
     :root { --radius: 10px; --transition: 0.2s ease; }
 
+    /* Light by default */
+    :root {
+      --bg: #f4f5fa; --surface: #ffffff; --border: #dde0ef;
+      --text: #1a1d27; --muted: #696d88; --accent: #6259c8; --accent2: #1e9e98;
+      --tag-bg: #eceef8; --tag-text: #565978;
+      --ctrl-bg: #ffffff; --ctrl-text: #696d88; --ctrl-hover: #1a1d27;
+    }
+    /* Dark when system prefers dark */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1117; --surface: #1a1d27; --border: #2a2d3a;
+        --text: #e2e4ed; --muted: #8b8fa8; --accent: #7c6fcd; --accent2: #5cc8c2;
+        --tag-bg: #22253a; --tag-text: #a0a4c0;
+        --ctrl-bg: #1a1d27; --ctrl-text: #8b8fa8; --ctrl-hover: #e2e4ed;
+      }
+    }
+    /* Explicit user override */
     [data-theme="dark"] {
       --bg: #0f1117; --surface: #1a1d27; --border: #2a2d3a;
       --text: #e2e4ed; --muted: #8b8fa8; --accent: #7c6fcd; --accent2: #5cc8c2;
@@ -53,7 +70,8 @@
 
     /* ── Controls ── */
     .controls {
-      position: fixed; top: 1.25rem; right: 1.5rem;
+      position: fixed; top: 1.25rem;
+      right: max(1.5rem, calc((100vw - 860px) / 2 + 1.5rem));
       display: flex; align-items: center; gap: 0.5rem; z-index: 100;
     }
     .lang-switcher {
@@ -343,14 +361,27 @@
     // ── Theme toggle ──
     const html = document.documentElement;
     const themeBtn = document.getElementById('themeToggle');
+    const sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+
     function setTheme(t) {
       html.setAttribute('data-theme', t);
       themeBtn.textContent = t === 'dark' ? '☀' : '☾';
       localStorage.setItem('theme', t);
     }
-    setTheme(localStorage.getItem('theme') || 'dark');
+
+    function currentTheme() {
+      return html.getAttribute('data-theme') || (sysDark.matches ? 'dark' : 'light');
+    }
+
+    const saved = localStorage.getItem('theme');
+    if (saved) {
+      setTheme(saved);
+    } else {
+      themeBtn.textContent = sysDark.matches ? '☀' : '☾';
+    }
+
     themeBtn.addEventListener('click', () => {
-      setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+      setTheme(currentTheme() === 'dark' ? 'light' : 'dark');
     });
   </script>
 
