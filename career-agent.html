@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Agent — Product Brief</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root { --radius: 10px; --transition: 0.2s ease; }
+
+    :root {
+      --bg: #f4f5fa; --surface: #ffffff; --border: #dde0ef;
+      --text: #1a1d27; --muted: #696d88; --accent: #6259c8; --accent2: #1e9e98;
+      --tag-bg: #eceef8; --tag-text: #565978;
+      --ctrl-bg: #ffffff; --ctrl-text: #696d88; --ctrl-hover: #1a1d27;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1117; --surface: #1a1d27; --border: #2a2d3a;
+        --text: #e2e4ed; --muted: #8b8fa8; --accent: #7c6fcd; --accent2: #5cc8c2;
+        --tag-bg: #22253a; --tag-text: #a0a4c0;
+        --ctrl-bg: #1a1d27; --ctrl-text: #8b8fa8; --ctrl-hover: #e2e4ed;
+      }
+    }
+    [data-theme="dark"] {
+      --bg: #0f1117; --surface: #1a1d27; --border: #2a2d3a;
+      --text: #e2e4ed; --muted: #8b8fa8; --accent: #7c6fcd; --accent2: #5cc8c2;
+      --tag-bg: #22253a; --tag-text: #a0a4c0;
+      --ctrl-bg: #1a1d27; --ctrl-text: #8b8fa8; --ctrl-hover: #e2e4ed;
+    }
+    [data-theme="light"] {
+      --bg: #f4f5fa; --surface: #ffffff; --border: #dde0ef;
+      --text: #1a1d27; --muted: #696d88; --accent: #6259c8; --accent2: #1e9e98;
+      --tag-bg: #eceef8; --tag-text: #565978;
+      --ctrl-bg: #ffffff; --ctrl-text: #696d88; --ctrl-hover: #1a1d27;
+    }
+
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 16px; line-height: 1.6; min-height: 100vh;
+      transition: background var(--transition), color var(--transition);
+    }
+    a { color: var(--accent2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Controls ── */
+    .controls {
+      position: fixed; top: 1.25rem;
+      right: max(1.5rem, calc((100vw - 860px) / 2 + 1.5rem));
+      display: flex; align-items: center; gap: 0.5rem; z-index: 100;
+    }
+    .lang-switcher {
+      display: flex; background: var(--ctrl-bg); border: 1px solid var(--border);
+      border-radius: 6px; overflow: hidden;
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .lang-btn {
+      background: none; border: none; color: var(--ctrl-text);
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em;
+      padding: 0.35em 0.7em; cursor: pointer;
+      transition: color var(--transition), background var(--transition);
+    }
+    .lang-btn:hover { color: var(--ctrl-hover); }
+    .lang-btn.active { color: var(--accent2); }
+    .lang-divider { width: 1px; background: var(--border); align-self: stretch; }
+    .theme-btn {
+      background: var(--ctrl-bg); border: 1px solid var(--border); border-radius: 6px;
+      color: var(--ctrl-text); font-size: 1rem; padding: 0.3em 0.55em;
+      cursor: pointer; line-height: 1;
+      transition: background var(--transition), border-color var(--transition), color var(--transition);
+    }
+    .theme-btn:hover { color: var(--ctrl-hover); }
+
+    /* ── Layout ── */
+    .page { max-width: 860px; margin: 0 auto; padding: 4rem 1.5rem 3rem; }
+
+    /* ── Back link ── */
+    .back {
+      font-size: 0.82rem; color: var(--muted); margin-bottom: 2.5rem;
+      display: inline-block;
+    }
+    .back:hover { color: var(--accent2); text-decoration: none; }
+
+    /* ── Markdown content styles ── */
+    .md-body h1 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 700;
+      line-height: 1.25; margin-bottom: 0.5rem; color: var(--text);
+    }
+    .md-body h2 {
+      font-size: 1.2rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem; border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+    .md-body h3 {
+      font-size: 1rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+    .md-body p {
+      margin-bottom: 1rem; color: var(--text);
+    }
+    .md-body p + p { margin-top: 0; }
+    .md-body ul, .md-body ol {
+      margin: 0.5rem 0 1rem 1.4rem;
+    }
+    .md-body li { margin-bottom: 0.3rem; }
+    .md-body strong { font-weight: 600; }
+    .md-body em { color: var(--muted); font-style: italic; }
+    .md-body hr {
+      border: none; border-top: 1px solid var(--border); margin: 2rem 0;
+    }
+    .md-body blockquote {
+      border-left: 3px solid var(--accent); padding: 0.5rem 1rem;
+      margin: 1rem 0; color: var(--muted); font-style: italic;
+    }
+
+    /* ── Tables ── */
+    .md-body table {
+      width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem;
+      font-size: 0.9rem;
+    }
+    .md-body th {
+      text-align: left; font-weight: 600; font-size: 0.78rem;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      color: var(--muted); padding: 0.5rem 0.75rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .md-body td {
+      padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .md-body tr:last-child td { border-bottom: none; }
+    .md-body tr:hover td { background: var(--tag-bg); }
+
+    /* ── Code ── */
+    .md-body code {
+      font-family: "SF Mono", "Fira Code", Consolas, monospace;
+      font-size: 0.85em; background: var(--tag-bg); color: var(--accent);
+      padding: 0.1em 0.4em; border-radius: 4px;
+    }
+    .md-body pre {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1rem 1.25rem;
+      overflow-x: auto; margin: 1rem 0 1.5rem;
+    }
+    .md-body pre code {
+      background: none; color: var(--text); padding: 0; font-size: 0.85rem;
+    }
+
+    /* ── Meta line under h1 ── */
+    .meta {
+      font-size: 0.82rem; color: var(--muted); margin-bottom: 2rem;
+    }
+
+    /* ── Loading / Error ── */
+    .state {
+      color: var(--muted); font-size: 0.9rem; padding: 2rem 0;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      display: flex; flex-direction: column; gap: 0.6rem;
+      padding-top: 1.5rem; border-top: 1px solid var(--border);
+      font-size: 0.85rem; color: var(--muted);
+      transition: border-color var(--transition); margin-top: 3rem;
+    }
+    .footer-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+    .footer a { color: var(--muted); }
+    .footer a:hover { color: var(--accent2); text-decoration: none; }
+    .footer-copy { font-size: 0.78rem; opacity: 0.7; }
+
+    @media (max-width: 480px) {
+      .page { padding: 2.5rem 1.25rem 2rem; }
+      .controls { top: 0.75rem; right: 0.75rem; }
+      .md-body table { font-size: 0.8rem; }
+      .md-body th, .md-body td { padding: 0.4rem 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="controls">
+    <div class="lang-switcher" role="group" aria-label="Language">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <div class="lang-divider"></div>
+      <button class="lang-btn" data-lang="ru">RU</button>
+    </div>
+    <button class="theme-btn" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">☀</button>
+  </div>
+
+  <div class="page">
+
+    <a href="index.html" class="back">← Portfolio</a>
+
+    <div id="content" class="md-body">
+      <p class="state">Loading…</p>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-links">
+        <span>Alex Bondarenko</span>
+        <a href="https://github.com/ioncat" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/alexibondarenko/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div class="footer-copy">All rights reserved, all wrongs reversed · No LLMs were harmed</div>
+    </footer>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    // ── Theme ── (default: light)
+    const themeBtn = document.getElementById('themeToggle');
+    const initial = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', initial);
+    themeBtn.textContent = initial === 'dark' ? '☀' : '☾';
+    themeBtn.addEventListener('click', () => {
+      const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      themeBtn.textContent = next === 'dark' ? '☀' : '☾';
+    });
+
+    // ── Language + Markdown load ──
+    const files = {
+      en: 'career-agent_product-brief-en.md',
+      ru: 'career-agent_product-brief-ru.md'
+    };
+
+    let currentLang = localStorage.getItem('brief-lang') || 'en';
+    const content = document.getElementById('content');
+
+    function setActive(lang) {
+      document.querySelectorAll('.lang-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.lang === lang);
+      });
+    }
+
+    function loadBrief(lang) {
+      currentLang = lang;
+      localStorage.setItem('brief-lang', lang);
+      setActive(lang);
+      content.innerHTML = '<p class="state">Loading…</p>';
+      fetch(files[lang])
+        .then(r => {
+          if (!r.ok) throw new Error(r.status);
+          return r.text();
+        })
+        .then(md => { content.innerHTML = marked.parse(md); })
+        .catch(() => {
+          content.innerHTML = '<p class="state">Could not load content. Make sure the .md file is in the same folder.</p>';
+        });
+    }
+
+    // Check which language files exist, hide buttons + dividers for missing ones
+    function initLangs() {
+      const buttons = [...document.querySelectorAll('.lang-btn')];
+      const checks = buttons.map(btn =>
+        fetch(files[btn.dataset.lang], { method: 'HEAD' })
+          .then(r => ({ lang: btn.dataset.lang, ok: r.ok }))
+          .catch(() => ({ lang: btn.dataset.lang, ok: false }))
+      );
+
+      Promise.all(checks).then(results => {
+        const available = results.filter(r => r.ok).map(r => r.lang);
+
+        // Hide buttons for missing files + adjacent dividers
+        const switcher = document.querySelector('.lang-switcher');
+        const children = [...switcher.children];
+        children.forEach(el => {
+          if (el.classList.contains('lang-btn') && !available.includes(el.dataset.lang)) {
+            el.style.display = 'none';
+          }
+        });
+
+        // Hide dividers that are now between two hidden/absent buttons or at edges
+        const visibleBtns = children.filter(el =>
+          el.classList.contains('lang-btn') && available.includes(el.dataset.lang)
+        );
+        // Rebuild: hide all dividers, re-insert only between visible buttons
+        children.filter(el => el.classList.contains('lang-divider'))
+          .forEach(d => d.style.display = 'none');
+        visibleBtns.forEach((btn, i) => {
+          if (i > 0) {
+            // Find the divider between prev visible and this btn
+            let el = btn.previousElementSibling;
+            while (el && !el.classList.contains('lang-btn')) {
+              if (el.classList.contains('lang-divider')) {
+                el.style.display = '';
+                break;
+              }
+              el = el.previousElementSibling;
+            }
+          }
+        });
+
+        // Hide entire switcher if only one lang available
+        if (available.length <= 1) {
+          document.querySelector('.lang-switcher').style.display = 'none';
+        }
+
+        // Pick language: saved pref if available, else first available
+        const lang = available.includes(currentLang) ? currentLang : (available[0] || 'en');
+        loadBrief(lang);
+      });
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => loadBrief(btn.dataset.lang));
+    });
+
+    initLangs();
+  </script>
+</body>
+</html>
