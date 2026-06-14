@@ -42,9 +42,10 @@ The user makes two decisions: apply or skip, and approve the CV. Everything else
 
 ## Who It's For
 
-**Product Managers, Product Owners, Project Managers** in active job search. Passive search is a secondary segment.
+**Primary ICP:** PdM (Product Manager) · PO (Product Owner) — in active job search.  
+**Extended ICP:** PM (Project Manager) · BA (Business Analyst) · other non-technical roles.
 
-The PM specialisation is intentional: fit analysis understands PM archetypes, evaluates PM-specific experience signals (product ownership, discovery vs delivery, team scale), and adapts CV framing to what the role actually needs — not just what the JD says.
+The PM specialisation is intentional: fit analysis understands PM archetypes, evaluates PM-specific experience signals (product ownership, discovery vs delivery, team scale), and adapts CV framing to what the role actually needs — not just what the JD says. PM and BA roles are supported via a generic skill type — not the core optimisation target.
 
 ---
 

@@ -154,6 +154,23 @@
       font-size: 0.82rem; color: var(--muted); margin-bottom: 2rem;
     }
 
+    /* ── Solution tabs ── */
+    .sol-tabs {
+      display: flex; gap: 0; margin-bottom: 1.25rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .sol-tab {
+      background: none; border: none; border-bottom: 2px solid transparent;
+      color: var(--muted); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.03em;
+      padding: 0.45em 1.1em; cursor: pointer; margin-bottom: -2px;
+      transition: color var(--transition), border-color var(--transition);
+    }
+    .sol-tab:hover { color: var(--text); }
+    .sol-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .sol-panel { display: none; }
+    .sol-panel.active { display: block; }
+    .sol-diagram img { width: 100%; max-width: 100%; height: auto; display: block; }
+
     /* ── Loading / Error ── */
     .state {
       color: var(--muted); font-size: 0.9rem; padding: 2rem 0;
@@ -238,6 +255,48 @@
       });
     }
 
+    function injectDiagramTab() {
+      const headings = content.querySelectorAll('h2');
+      let solutionH2 = null;
+      headings.forEach(h => {
+        if (/solution|решение/i.test(h.textContent.trim())) solutionH2 = h;
+      });
+      if (!solutionH2) return;
+
+      // Collect nodes between Solution h2 and next h2
+      const nodes = [];
+      let el = solutionH2.nextElementSibling;
+      while (el && el.tagName !== 'H2') {
+        nodes.push(el);
+        el = el.nextElementSibling;
+      }
+
+      // Build tab structure
+      const wrap = document.createElement('div');
+      wrap.innerHTML = `
+        <div class="sol-tabs">
+          <button class="sol-tab active" data-tab="text">Overview</button>
+          <button class="sol-tab" data-tab="flow">Flow diagram</button>
+        </div>
+        <div class="sol-panel active" data-panel="text"></div>
+        <div class="sol-panel sol-diagram" data-panel="flow">
+          <img src="user-flow.svg" alt="Career Agent user flow diagram">
+        </div>`;
+
+      const textPanel = wrap.querySelector('[data-panel="text"]');
+      nodes.forEach(n => textPanel.appendChild(n));
+      solutionH2.after(wrap);
+
+      wrap.querySelectorAll('.sol-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+          wrap.querySelectorAll('.sol-tab').forEach(b => b.classList.remove('active'));
+          wrap.querySelectorAll('.sol-panel').forEach(p => p.classList.remove('active'));
+          btn.classList.add('active');
+          wrap.querySelector(`[data-panel="${btn.dataset.tab}"]`).classList.add('active');
+        });
+      });
+    }
+
     function loadBrief(lang) {
       currentLang = lang;
       localStorage.setItem('brief-lang', lang);
@@ -248,7 +307,10 @@
           if (!r.ok) throw new Error(r.status);
           return r.text();
         })
-        .then(md => { content.innerHTML = marked.parse(md); })
+        .then(md => {
+          content.innerHTML = marked.parse(md);
+          injectDiagramTab();
+        })
         .catch(() => {
           content.innerHTML = '<p class="state">Could not load content. Make sure the .md file is in the same folder.</p>';
         });
