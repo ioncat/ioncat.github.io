@@ -9,7 +9,7 @@
 
 The PM job market is competitive and getting more so: more candidates chasing the same roles. A typical candidate spends 2–4 hours tailoring a CV before knowing whether they have a real shot. Most tools help write faster. None answer the prior question: *should you apply at all?*
 
-There is also a cognitive trap: candidates read job descriptions emotionally. The first impression anchors their judgment — real barriers get ignored. Real example: a candidate self-assessed at 10/10 → the agent returned 4/10 with specific reasoning. Delta = 6 points, caused by one hidden core requirement.
+There is also a cognitive trap: candidates read job descriptions (JD) emotionally. The first impression anchors their judgment — real barriers get ignored. Real example: a candidate self-assessed at 10/10 → the agent returned 4/10 with specific reasoning. Delta = 6 points, caused by one hidden core requirement.
 
 **Counter-cyclical thesis:** the worse the market for candidates, the higher the value of a tool that raises hit rate. The better the market, the faster the candidate lands. Either way, the tool is needed.
 
@@ -19,7 +19,7 @@ There is also a cognitive trap: candidates read job descriptions emotionally. Th
 
 **Career Agent** is a decision-support system for PM/PO job search. Not a CV generator — a pipeline that answers two questions, in order.
 
-**Should you apply?** The agent reads the JD deeper than a candidate under emotional first impression. It extracts the employer's real pain, hidden requirements, and role archetype (Founder Proxy vs Executor). It scores the vacancy across 8 dimensions (**VScore** — vacancy attractiveness) and runs a Fit × VScore matrix. Verdict: `apply` · `take a chance` · `decline`. `decline` stops the pipeline — no effort wasted.
+**Should you apply?** The agent reads the JD deeper than a candidate under emotional first impression. It extracts the employer's real pain, hidden requirements, and role archetype (Founder Proxy vs Executor). It scores the vacancy across 8 dimensions (**VScore** — vacancy attractiveness) and runs a Fit × VScore matrix. Recommendation: `apply` · `take a chance` · `decline`. `decline` stops the pipeline — no effort wasted.
 
 **How do you win this one?** If fit is real, gaps come first: barriers surfaced in Fit Scoring are resolved interactively (Phase 2.5) and saved to PROFILE.md before any writing starts. Then: a targeted CV from actual experience, self-reviewed against the Adaptation Plan — the user sees an already-validated version.
 
@@ -27,7 +27,7 @@ There is also a cognitive trap: candidates read job descriptions emotionally. Th
 
 1. **JD Discovery & Extraction** — automatic via RSS push, or manual (URL / JD paste in Telegram).
 2. **Deep Analysis (Phase 1)** — employer's real pain, hidden requirements, role archetype, **VScore** (vacancy attractiveness, 8 dims).
-3. **Fit Scoring (Phase 2)** — Fit × VScore matrix → verdict: `apply` · `take a chance` · `decline`. Key Barriers + Adaptation Plan. `decline` → pipeline stops, no CV wasted.
+3. **Fit Scoring (Phase 2)** — Fit × VScore matrix → recommendation: `apply` · `take a chance` · `decline`. Key Barriers + Adaptation Plan. `decline` → pipeline stops, no CV wasted.
 4. **Objection Handling (Phase 2.5)** — if barriers exist: resolve gaps interactively before writing anything. Resolved evidence saved to PROFILE.md.
 5. **CV Draft (Phase 3)** — tailored to JD pain and Adaptation Plan.
 6. **Self-Review (Phase 3.5)** — word frequency check, tools gap, tone vs archetype. First time user sees the CV.
@@ -35,6 +35,8 @@ There is also a cognitive trap: candidates read job descriptions emotionally. Th
 8. **Cover Letter (Phase 4) → CoverLetter.pdf → Telegram**
 
 The user makes two decisions: apply or skip, and approve the CV. Everything else runs automatically.
+
+> **PoC note:** at the current stage, Telegram is the primary interface for all user interactions with the service.
 
 ---
 
@@ -50,7 +52,7 @@ The PM specialisation is intentional: fit analysis understands PM archetypes, ev
 
 | What | How it differs |
 |---|---|
-| **Decision-first** | Fit verdict (apply / take a chance / decline) before any CV work. No alternative (Jobscan, Teal, Resume.io) gates document generation on a go/no-go assessment |
+| **Decision-first** | Fit recommendation (apply / take a chance / decline) before any CV work. No alternative (Jobscan, Teal, Resume.io) gates document generation on a go/no-go assessment |
 | **PM archetype-aware** | Fit analysis distinguishes Founder Proxy vs Executor — archetype mismatch is a silent hire killer that generic tools ignore |
 | **Self-review loop** | Phase 3.5: the agent reviews its own CV against the Adaptation Plan. The user sees an already-validated version |
 | **Honest scoring** | Says "don't apply" when fit is weak. Not optimised for submission rate — optimised for outcomes |
@@ -73,7 +75,7 @@ The PM specialisation is intentional: fit analysis understands PM archetypes, ev
 |---|---|
 | Vacancies analyzed / user / month | Tracked in DB |
 | Apply rate (applied vs skipped after analysis) | Tracked in DB |
-| CV generation rate (go-verdict → CV) | Tracked in DB |
+| CV generation rate (go-recommendation → CV) | Tracked in DB |
 | Cache hit rate + cost per vacancy | Tracked in DB (`llm_usage`) |
 | Time-to-placement | Planned (self-report via bot prompt) |
 
@@ -98,7 +100,7 @@ COGS ~$0.32 per vacancy (full pipeline: fetch → analyze → CV → cover) on C
 ## What's Built / What's Next
 
 **Working today:**
-- Full 8-phase pipeline: VScore scoring, Fit × VScore verdict, Objection Handling (Phase 2.5), CV Draft, Self-Review
+- Full 8-phase pipeline: VScore scoring, Fit × VScore recommendation, Objection Handling (Phase 2.5), CV Draft, Self-Review
 - Telegram UI (aiogram 3.x) + Web tracker (FastAPI + HTMX)
 - Multi-user architecture (users table, user-scoped vacancies, skill_type routing)
 - Prompt caching + Extended Thinking (Claude Sonnet 4.6)
@@ -116,7 +118,7 @@ Deterministic/Cognitive split — extract deterministic orchestration (file ops,
 
 - **No external user validation** — all discovery is self-reported; no interviews with outside users conducted yet
 - **Competitive landscape unmapped** — positioning built on product thesis, not market data
-- **Fit scoring calibration is manual** — no automated feedback loop from "verdict → actual outcome"
+- **Fit scoring calibration is manual** — no automated feedback loop from "recommendation → actual outcome"
 - **Onboarding not complete** — AI Interview System (key differentiator, deep profile generation) is 🔴 DESIGN REQUIRED
 
 ---
