@@ -7,11 +7,37 @@
 
 ## Problem & Market
 
-The PM job market is competitive and getting more so: more candidates chasing the same roles. A typical candidate spends 2–4 hours tailoring a CV before knowing whether they have a real shot. Most tools help write faster. None answer the prior question: *should you apply at all?*
+Career Agent — job search counselor for PdM / PO.
 
-There is also a cognitive trap: candidates read job descriptions (JD) emotionally. The first impression anchors their judgment — real barriers get ignored. Real example: a candidate self-assessed at 10/10 → the agent returned 4/10 with specific reasoning. Delta = 6 points, caused by one hidden core requirement.
+The PM job market is competitive and getting more so. A typical candidate spends 30–90 minutes tailoring a CV before knowing whether they have a real shot. In an active search — 30, 70 vacancies — that's weeks of effort with no quality guarantee.
 
-**Counter-cyclical thesis:** the worse the market for candidates, the higher the value of a tool that raises hit rate. The better the market, the faster the candidate lands. Either way, the tool is needed.
+Two problems compound each other. First, candidates read job descriptions (JD) emotionally: the first impression anchors judgment, real barriers get missed. Real example: a candidate self-assessed at 10/10 — the agent returned 4/10. Delta = 6 points, caused by one hidden requirement. Second, even when the decision to apply is right, making a genuinely tailored CV manually takes time most candidates don't spend — they reuse the same document and wonder why response rates are low.
+
+**Primary ICP:** PdM (Product Manager) · PO (Product Owner) in active job search.  
+**Extended ICP:** PM (Project Manager) · BA (Business Analyst) · other non-technical roles (via generic skill type).
+
+---
+
+## Product Vision
+
+Career Agent builds a picture of the candidate — through structured onboarding, LinkedIn/CV data, and evidence surfaced during the pipeline. That knowledge compounds with every session.
+
+When fit is real: a targeted CV from actual experience, cross-checked against the vacancy's requirements, delivered as PDF. No fabricated claims. The user approves — or requests edits. Everything else is automated.
+
+Candidates spend time on decisions, not on writing.
+
+**Problems we solve:**
+
+- Candidate doesn't know real odds before submitting CV
+- 30–90 min per application × 30–70 vacancies = weeks of effort, no quality guarantee
+- JD read emotionally — first impression anchors judgment, real barriers missed
+- Self-assessment of fit systematically inflated (real example: 10/10 → 4/10)
+- Same CV reused across applications — low response rate, cause unknown
+- CV doesn't address employer's actual pain buried in the JD
+- No honest go/no-go before CV generation
+- Generic tools miss PM archetypes (Founder Proxy vs Executor, Discovery vs Delivery)
+- Gaps not addressed before writing starts
+- CV generators fabricate — no verified candidate profile, no accumulated evidence across sessions
 
 ---
 
@@ -37,15 +63,6 @@ There is also a cognitive trap: candidates read job descriptions (JD) emotionall
 The user makes two decisions: apply or skip, and approve the CV. Everything else runs automatically.
 
 > **PoC note:** at the current stage, Telegram is the primary interface for all user interactions with the service.
-
----
-
-## Who It's For
-
-**Primary ICP:** PdM (Product Manager) · PO (Product Owner) — in active job search.  
-**Extended ICP:** PM (Project Manager) · BA (Business Analyst) · other non-technical roles.
-
-The PM specialisation is intentional: fit analysis understands PM archetypes, evaluates PM-specific experience signals (product ownership, discovery vs delivery, team scale), and adapts CV framing to what the role actually needs — not just what the JD says. PM and BA roles are supported via a generic skill type — not the core optimisation target.
 
 ---
 
@@ -86,9 +103,9 @@ Actuals not yet published — next step: `docs/discovery/product-metrics.md` fro
 
 ## Unit Economics
 
-COGS ~$0.32 per vacancy (full pipeline: fetch → analyze → CV → cover) on Claude Sonnet 4.6 with prompt caching.
+Cost of Service ~$0.32 per vacancy (full pipeline: fetch → analyze → CV → cover) on Claude Sonnet 4.6 with prompt caching.
 
-| Model | Revenue | COGS | Gross Margin |
+| Model | Revenue | Cost of Service | Gross Margin |
 |---|---|---|---|
 | $0.99 / vacancy | $0.99 | $0.32 | **68%** |
 | $4.99 / vacancy | $4.99 | $0.32 | **94%** |
@@ -111,7 +128,7 @@ COGS ~$0.32 per vacancy (full pipeline: fetch → analyze → CV → cover) on C
 - 291 tests, e2e verified
 
 **Next significant step:**  
-Deterministic/Cognitive split — extract deterministic orchestration (file ops, dedup, PDF rendering) into a Python FSM; invoke LLM only at 3 cognitive decision points instead of ~43 mixed steps. Goal: lower latency, lower COGS, predictable output structure.
+Deterministic/Cognitive split — extract deterministic orchestration (file ops, dedup, PDF rendering) into a Python FSM; invoke LLM only at 3 cognitive decision points instead of ~43 mixed steps. Goal: lower latency, lower Cost of Service, predictable output structure.
 
 ---
 

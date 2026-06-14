@@ -255,6 +255,51 @@
       });
     }
 
+    function injectProblemVisionTabs() {
+      const headings = [...content.querySelectorAll('h2')];
+      let problemH2 = null, visionH2 = null;
+      headings.forEach(h => {
+        if (/problem|проблема/i.test(h.textContent)) problemH2 = h;
+        if (/product vision|видение продукта/i.test(h.textContent)) visionH2 = h;
+      });
+      if (!problemH2 || !visionH2) return;
+
+      // Collect nodes for each tab
+      const collect = (from, until) => {
+        const nodes = []; let el = from.nextElementSibling;
+        while (el && el !== until) { nodes.push(el); el = el.nextElementSibling; }
+        return nodes;
+      };
+      const nextAfterVision = headings[headings.indexOf(visionH2) + 1] || null;
+      const problemNodes = collect(problemH2, visionH2);
+      const visionNodes  = collect(visionH2, nextAfterVision);
+
+      // Build tabs
+      const wrap = document.createElement('div');
+      wrap.innerHTML = `
+        <div class="sol-tabs">
+          <button class="sol-tab active" data-tab="prob">Problem &amp; Market</button>
+          <button class="sol-tab" data-tab="vis">Product Vision</button>
+        </div>
+        <div class="sol-panel active" data-panel="prob"></div>
+        <div class="sol-panel" data-panel="vis"></div>`;
+
+      problemNodes.forEach(n => wrap.querySelector('[data-panel="prob"]').appendChild(n));
+      visionNodes.forEach(n  => wrap.querySelector('[data-panel="vis"]').appendChild(n));
+
+      visionH2.remove();
+      problemH2.after(wrap);
+
+      wrap.querySelectorAll('.sol-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+          wrap.querySelectorAll('.sol-tab').forEach(b => b.classList.remove('active'));
+          wrap.querySelectorAll('.sol-panel').forEach(p => p.classList.remove('active'));
+          btn.classList.add('active');
+          wrap.querySelector(`[data-panel="${btn.dataset.tab}"]`).classList.add('active');
+        });
+      });
+    }
+
     function injectDiagramTab() {
       const headings = content.querySelectorAll('h2');
       let solutionH2 = null;
@@ -309,6 +354,7 @@
         })
         .then(md => {
           content.innerHTML = marked.parse(md);
+          injectProblemVisionTabs();
           injectDiagramTab();
         })
         .catch(() => {
