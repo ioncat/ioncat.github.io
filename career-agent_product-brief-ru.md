@@ -20,7 +20,7 @@ PM-рынок конкурентный и становится ещё конку
 **Career Agent** — персональный карьерный советник для Product Manager / Product Owner. Не генератор CV — инструмент принятия решений с двумя слоями ценности:
 
 **Слой 1 — Стоит ли подавать?**  
-Агент читает вакансию глубже, чем кандидат под влиянием первого эмоционального впечатления. Извлекает реальную боль работодателя, скрытые требования, архетипный сигнал (Founder Proxy vs Executor). Выдаёт честный вердикт: *apply / apply with adaptation / don't apply*. Плохой фит → говорит прямо и экономит время.
+Агент читает вакансию глубже, чем кандидат под влиянием первого эмоционального впечатления. Извлекает реальную боль работодателя, скрытые требования, архетипный сигнал (Founder Proxy vs Executor). Оценивает вакансию по 8 измерениям (**VScore**) и запускает матрицу Fit × VScore → вердикт: *apply / take a chance / decline*. `decline` → пайплайн останавливается сразу. CV не тратится.
 
 **Слой 2 — Как выиграть эту вакансию?**  
 Если фит есть — строит лучший возможный питч из реального опыта кандидата. Не generic CV — целевая история: почему именно этот кандидат — ответ на конкретную боль работодателя. Включает self-review pass: CV проверяется против Adaptation Plan перед отправкой.
@@ -29,13 +29,14 @@ PM-рынок конкурентный и становится ещё конку
 
 ```
 RSS auto-discovery → Telegram уведомление
-→ Phase 1: Deep JD Analysis (архетип, скрытые требования, барьеры)
-→ Phase 2: Fit Scoring (вердикт · Fit Breakdown ✅/⚠️/❌ · Adaptation Plan)
-→ [пользователь: apply или skip]
-→ Phase 3: CV Draft (archetype-aware framing)
-→ Phase 3.5: Self-Review (cross-check vs Adaptation Plan)
-→ CV.pdf → Telegram
-→ Phase 4: Cover Letter (2 варианта: narrative + bullets)
+→ Phase 1:   Deep JD Analysis (архетип, скрытые требования, барьеры, VScore — 8 измерений)
+→ Phase 2:   Fit Scoring (Fit × VScore → apply / take a chance / decline · Adaptation Plan)
+             [decline: пайплайн останавливается]
+→ Phase 2.5: Objection Handling — закрыть пробелы интерактивно; доказательства → PROFILE.md
+→ Phase 3:   CV Draft (archetype-aware, под Adaptation Plan)
+→ Phase 3.5: Self-Review (частотность слов, tools gap, тон vs архетип)
+→ CV.pdf → Telegram · [пользователь одобряет]
+→ Phase 4:   Cover Letter (2 варианта: narrative + bullets) → CoverLetter.pdf → Telegram
 ```
 
 Пользователь принимает только два решения: подавать или нет, и одобрить CV. Всё остальное — автоматически.
@@ -54,7 +55,7 @@ RSS auto-discovery → Telegram уведомление
 
 | Что | Чем отличается |
 |---|---|
-| **Decision-first** | Вердикт apply/skip — до начала работы с CV. Ни один аналог (Jobscan, Teal, Resume.io) не делает go/no-go до генерации документа |
+| **Decision-first** | Вердикт (apply / take a chance / decline) до любой работы с CV. Ни один аналог (Jobscan, Teal, Resume.io) не делает go/no-go до генерации документа |
 | **PM archetype-aware** | Fit analysis различает Founder Proxy vs Executor — архетипный мисматч тихий убийца найма, который generic инструменты не видят |
 | **Self-review loop** | Phase 3.5: агент проверяет свой же CV против Adaptation Plan. Кандидат видит уже перепроверенную версию |
 | **Честный скоринг** | Говорит «не подавай» когда фит слабый. Не оптимизирует под отправку — оптимизирует под результат |
@@ -102,7 +103,7 @@ COGS ~$0.32 на вакансию (полный pipeline: fetch → analyze → 
 ## Что построено / Что дальше
 
 **Работает сегодня:**
-- Полный 5-фазный pipeline с self-review
+- Полный 8-фазный pipeline: VScore-скоринг, вердикт Fit × VScore, Objection Handling (Phase 2.5), CV Draft, Self-Review
 - Telegram UI (aiogram 3.x) + Web tracker (FastAPI + HTMX)
 - Multi-user архитектура (users table, user-scoped vacancies, skill_type routing)
 - Prompt caching + Extended Thinking (Claude Sonnet 4.6)

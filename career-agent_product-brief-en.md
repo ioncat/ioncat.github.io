@@ -20,7 +20,7 @@ There is also a cognitive trap: candidates read job descriptions emotionally. Th
 **Career Agent** is a personal job search counselor for Product Managers and Product Owners — not a CV generator, but a decision-support tool with two layers of value:
 
 **Layer 1 — Should you apply?**  
-The agent reads the vacancy more carefully than a candidate can after an emotional first impression anchors their judgment. It extracts the employer's real pain, hidden requirements, and archetype signal (Founder Proxy vs Executor). It delivers an honest verdict: *apply / apply with adaptation / don't apply*. Weak fit → it says so clearly and saves the effort.
+The agent reads the vacancy more carefully than a candidate can after an emotional first impression anchors their judgment. It extracts the employer's real pain, hidden requirements, and archetype signal (Founder Proxy vs Executor). It scores the vacancy across 8 dimensions (**VScore**) and runs a Fit × VScore matrix to deliver an honest verdict: *apply / take a chance / decline*. `decline` → pipeline stops immediately. No CV wasted.
 
 **Layer 2 — How do you win this one?**  
 If the fit is real: the best possible pitch built from the candidate's actual experience. Not a generic CV — a targeted story answering *why this candidate solves this employer's specific problem*. Includes a self-review pass: CV cross-checked against the Adaptation Plan before delivery.
@@ -29,13 +29,14 @@ If the fit is real: the best possible pitch built from the candidate's actual ex
 
 ```
 RSS auto-discovery → Telegram notification
-→ Phase 1: Deep JD Analysis (archetype, hidden requirements, barriers)
-→ Phase 2: Fit Scoring (verdict · Fit Breakdown ✅/⚠️/❌ · Adaptation Plan)
-→ [user: apply or skip]
-→ Phase 3: CV Draft (archetype-aware framing)
-→ Phase 3.5: Self-Review (cross-check vs Adaptation Plan)
-→ CV.pdf → Telegram
-→ Phase 4: Cover Letter (2 variants: narrative + bullets)
+→ Phase 1:   Deep JD Analysis (archetype, hidden requirements, barriers, VScore — 8 dims)
+→ Phase 2:   Fit Scoring (Fit × VScore → apply / take a chance / decline · Adaptation Plan)
+             [decline: pipeline stops]
+→ Phase 2.5: Objection Handling — resolve gaps interactively; evidence saved to PROFILE.md
+→ Phase 3:   CV Draft (archetype-aware, tailored to Adaptation Plan)
+→ Phase 3.5: Self-Review (word frequency, tools gap, tone vs archetype)
+→ CV.pdf → Telegram · [user approves]
+→ Phase 4:   Cover Letter (2 variants: narrative + bullets) → CoverLetter.pdf → Telegram
 ```
 
 The user makes exactly two decisions: apply or skip, and approve the CV. Everything else runs automatically.
@@ -54,7 +55,7 @@ The PM specialisation is intentional: fit analysis understands PM archetypes, ev
 
 | What | How it differs |
 |---|---|
-| **Decision-first** | Apply/skip verdict before any CV work. No alternative (Jobscan, Teal, Resume.io) gates document generation on a go/no-go assessment |
+| **Decision-first** | Fit verdict (apply / take a chance / decline) before any CV work. No alternative (Jobscan, Teal, Resume.io) gates document generation on a go/no-go assessment |
 | **PM archetype-aware** | Fit analysis distinguishes Founder Proxy vs Executor — archetype mismatch is a silent hire killer that generic tools ignore |
 | **Self-review loop** | Phase 3.5: the agent reviews its own CV against the Adaptation Plan. The user sees an already-validated version |
 | **Honest scoring** | Says "don't apply" when fit is weak. Not optimised for submission rate — optimised for outcomes |
@@ -102,7 +103,7 @@ COGS ~$0.32 per vacancy (full pipeline: fetch → analyze → CV → cover) on C
 ## What's Built / What's Next
 
 **Working today:**
-- Full 5-phase pipeline with self-review
+- Full 8-phase pipeline: VScore scoring, Fit × VScore verdict, Objection Handling (Phase 2.5), CV Draft, Self-Review
 - Telegram UI (aiogram 3.x) + Web tracker (FastAPI + HTMX)
 - Multi-user architecture (users table, user-scoped vacancies, skill_type routing)
 - Prompt caching + Extended Thinking (Claude Sonnet 4.6)
