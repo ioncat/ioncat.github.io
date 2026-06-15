@@ -43,7 +43,7 @@ Candidates spend time on decisions, not on writing.
 
 ## Solution
 
-**Career Agent** is a decision-support system for PM/PO job search. Not a CV generator — a pipeline that answers two questions, in order.
+**Career Agent** is an AI pipeline powered by Claude API (Anthropic) — built for the hardest part of job search: evaluating fit before you invest in the application. Not a CV generator — a pipeline that answers two questions, in order.
 
 **Should you apply?** The agent reads the JD deeper than a candidate under emotional first impression. It extracts the employer's real pain, hidden requirements, and role archetype (Founder Proxy vs Executor). It scores the vacancy across 8 dimensions (**VScore** — vacancy attractiveness) and runs a Fit × VScore matrix. Recommendation: `apply` · `take a chance` · `decline`. `decline` stops the pipeline — no effort wasted.
 
@@ -74,6 +74,7 @@ The user makes two decisions: apply or skip, and approve the CV. Everything else
 | **PM archetype-aware** | Fit analysis distinguishes Founder Proxy vs Executor — archetype mismatch is a silent hire killer that generic tools ignore |
 | **Self-review loop** | Phase 3.5: the agent reviews its own CV against the Adaptation Plan. The user sees an already-validated version |
 | **Honest scoring** | Says "don't apply" when fit is weak. Not optimised for submission rate — optimised for outcomes |
+| **Claude API + Extended Thinking** | Core analysis uses Extended Thinking for non-obvious barrier detection; prompt caching cuts per-vacancy cost |
 
 ---
 
