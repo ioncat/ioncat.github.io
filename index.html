@@ -135,9 +135,10 @@
     .card-problem { font-size: 0.88rem; color: var(--muted); line-height: 1.5; }
     .card-body { font-size: 0.92rem; line-height: 1.6; flex: 1; }
     .card-footer {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-top: 0.25rem; flex-wrap: wrap; gap: 0.5rem;
+      display: flex; flex-direction: column; align-items: stretch;
+      margin-top: 0.25rem; gap: 0.6rem;
     }
+    .card-links { display: flex; justify-content: center; align-items: center; gap: 0; }
     .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
     .tag {
       font-size: 0.72rem; font-weight: 500; background: var(--tag-bg);
@@ -170,10 +171,6 @@
   <div class="controls">
     <div class="lang-switcher" role="group" aria-label="Language">
       <button class="lang-btn active" data-lang="en">EN</button>
-      <div class="lang-divider"></div>
-      <button class="lang-btn" data-lang="ua">UA</button>
-      <div class="lang-divider"></div>
-      <button class="lang-btn" data-lang="ru">RU</button>
     </div>
     <button class="theme-btn" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">☀</button>
   </div>
@@ -200,7 +197,9 @@
             <span class="tag" data-i18n="t.backlog">Backlog</span>
             <span class="tag" data-i18n="t.decisions">Decision records</span>
           </div>
-          <a class="card-link" href="https://github.com/ioncat/dental-scheduling-mvp" target="_blank" rel="noopener" data-i18n="link.view">View →</a>
+          <div class="card-links">
+            <a class="card-link" href="https://github.com/ioncat/dental-scheduling-mvp" target="_blank" rel="noopener" data-i18n="link.view">View →</a>
+          </div>
         </div>
       </div>
 
@@ -209,8 +208,17 @@
         <div class="card-problem" data-i18n="c5.problem">Candidates apply without knowing their competitive fit — and submit CVs that don't address the employer's actual needs.</div>
         <div class="card-body" data-i18n="c5.body">AI pipeline that flips the sequence: fit assessment before CV generation. Designed with PM archetype logic (Delivery vs. Discovery, Executor vs. Founder Proxy, Enterprise vs. Startup, B2B vs. B2C, Growth vs. Support) to adapt CV framing per role type. Eight-phase Claude API pipeline with prompt caching, RSS-based job discovery, and human-in-the-loop approval via Telegram.</div>
         <div class="card-footer">
-          <a class="card-link" href="https://github.com/ioncat/ai-career-agent" target="_blank" rel="noopener" data-i18n="link.view">View →</a>
-          <a class="card-link" href="career-agent.html">Product Brief →</a>
+          <div class="tags">
+            <span class="tag" data-i18n="t.aiagent">AI agent</span>
+            <span class="tag">Claude API</span>
+            <span class="tag" data-i18n="t.auto">Automation</span>
+            <span class="tag" data-i18n="t.pmtools">PM tooling</span>
+          </div>
+          <div class="card-links">
+            <a class="card-link" style="padding: 0 1rem;" href="https://github.com/ioncat/ai-career-agent" target="_blank" rel="noopener" data-i18n="link.view">View →</a>
+            <div style="width:1px; height:0.9em; background:var(--border); align-self:center;"></div>
+            <a class="card-link" style="padding: 0 1rem;" href="career-agent.html">Product Brief →</a>
+          </div>
         </div>
       </div>
 
@@ -225,7 +233,9 @@
             <span class="tag">Prompt engineering</span>
             <span class="tag" data-i18n="t.auto">Automation</span>
           </div>
-          <a class="card-link" href="https://github.com/ioncat/web-page-classifier" target="_blank" rel="noopener" data-i18n="link.view">View →</a>
+          <div class="card-links">
+            <a class="card-link" href="https://github.com/ioncat/web-page-classifier" target="_blank" rel="noopener" data-i18n="link.view">View →</a>
+          </div>
         </div>
       </div>
 
@@ -240,7 +250,9 @@
             <span class="tag" data-i18n="t.roadmap">Roadmap</span>
             <span class="tag">Local LLM</span>
           </div>
-          <a class="card-link" href="https://github.com/ioncat/yt-summarizer" target="_blank" rel="noopener" data-i18n="link.view">View →</a>
+          <div class="card-links">
+            <a class="card-link" href="https://github.com/ioncat/yt-summarizer" target="_blank" rel="noopener" data-i18n="link.view">View →</a>
+          </div>
         </div>
       </div>
 
@@ -255,7 +267,9 @@
             <span class="tag" data-i18n="t.ux">UX design</span>
             <span class="tag">Prompt engineering</span>
           </div>
-          <a class="card-link" href="https://github.com/ioncat/llm-onpage-summarizer" target="_blank" rel="noopener" data-i18n="link.view">View →</a>
+          <div class="card-links">
+            <a class="card-link" href="https://github.com/ioncat/llm-onpage-summarizer" target="_blank" rel="noopener" data-i18n="link.view">View →</a>
+          </div>
         </div>
       </div>
 
