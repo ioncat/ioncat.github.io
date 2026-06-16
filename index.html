@@ -225,7 +225,7 @@
       <div class="card">
         <div class="card-title">Web Page Classifier</div>
         <div class="card-problem" data-i18n="c2.problem">Large link collections are unmanageable without consistent categorization.</div>
-        <div class="card-body" data-i18n="c2.body">Designed a 31-category taxonomy, evaluated 7 LLMs empirically (agreement rate metric), built a classification pipeline with domain rules to bypass or narrow LLM prompts. Roadmap to downstream ML classifier.</div>
+        <div class="card-body" data-i18n="c2.body">Large link collections lose structure — manual labeling fails, cloud LLMs too costly. Built a local LLM classification pipeline (Ollama), empirically compared 7 models using agreement rate as quality signal, optimized with domain rules. Roadmap: fine-tuned transformer classifier.</div>
         <div class="card-footer">
           <div class="tags">
             <span class="tag" data-i18n="t.ai">AI workflow</span>
@@ -259,7 +259,7 @@
       <div class="card">
         <div class="card-title">LLM Onpage Summarizer</div>
         <div class="card-problem" data-i18n="c4.problem">Most web content doesn't deserve full reading — you need the gist first.</div>
-        <div class="card-body" data-i18n="c4.body">Chrome extension with deliberate UX: right-click selection, auto-open viewer, model rating system. Prompt template system with custom tabs. Local-first — no data leaves the machine.</div>
+        <div class="card-body" data-i18n="c4.body">Summarizes any web page using a local LLM (Ollama) — no API keys, you decide where your data goes. Chrome extension with deliberate UX: right-click selection, auto-open viewer, model rating system, custom prompt templates.</div>
         <div class="card-footer">
           <div class="tags">
             <span class="tag" data-i18n="t.browser">Browser tool</span>
@@ -298,11 +298,11 @@
         'c1.problem': 'Small clinics run scheduling on Google Calendar — no staff management, no patient lifecycle, no role control.',
         'c1.body': 'Full product case: discovery → 5 documented decisions → 28 user stories → working app. Includes product hypothesis, MVP scope with explicit exclusions, and PDRs with rationale.',
         'c2.problem': 'Large link collections are unmanageable without consistent categorization.',
-        'c2.body': 'Designed a 31-category taxonomy, evaluated 7 LLMs empirically (agreement rate metric), built a classification pipeline with domain rules to bypass or narrow LLM prompts. Roadmap to downstream ML classifier.',
+        'c2.body': 'Large link collections lose structure — manual labeling fails, cloud LLMs too costly. Built a local LLM classification pipeline (Ollama), empirically compared 7 models using agreement rate as quality signal, optimized with domain rules. Roadmap: fine-tuned transformer classifier.',
         'c3.problem': 'A 10-minute video takes 10 minutes to judge. Titles and thumbnails don\'t show substance.',
         'c3.body': 'Full-stack AI app with phased roadmap. Three summarization modes (single / map-reduce / full extract) with auto-selection. Built-in model benchmarking. Product backlog with epics and deferral rationale.',
         'c4.problem': 'Most web content doesn\'t deserve full reading — you need the gist first.',
-        'c4.body': 'Chrome extension with deliberate UX: right-click selection, auto-open viewer, model rating system. Prompt template system with custom tabs. Local-first — no data leaves the machine.',
+        'c4.body': 'Summarizes any web page using a local LLM (Ollama) — no API keys, you decide where your data goes. Chrome extension with deliberate UX: right-click selection, auto-open viewer, model rating system, custom prompt templates.',
         'c5.title': 'AI Career Agent',
         'c5.problem': 'Candidates apply without knowing their competitive fit — and submit CVs that don\'t address the employer\'s actual needs.',
         'c5.body': 'AI pipeline that flips the sequence: fit assessment before CV generation. Designed with PM archetype logic (Delivery vs. Discovery, Executor vs. Founder Proxy, Enterprise vs. Startup, B2B vs. B2C, Growth vs. Support) to adapt CV framing per role type. Eight-phase Claude API pipeline with prompt caching, RSS-based job discovery, and human-in-the-loop approval via Telegram.',
