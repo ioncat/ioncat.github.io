@@ -188,8 +188,8 @@
 
       <div class="card">
         <div class="card-title" data-i18n="c1.title">Dental Scheduling MVP</div>
-        <div class="card-problem" data-i18n="c1.problem">Small clinics run scheduling on Google Calendar — no staff management, no patient lifecycle, no role control.</div>
-        <div class="card-body" data-i18n="c1.body">Full product case: discovery → 5 documented decisions → 28 user stories → working app. Includes product hypothesis, MVP scope with explicit exclusions, and PDRs with rationale.</div>
+        <div class="card-problem" data-i18n="c1.problem">Small clinics run scheduling on Google Calendar — no role separation, no patient records, no booking rules. Double bookings and missed appointments are the norm.</div>
+        <div class="card-body" data-i18n="c1.body">Full Product Owner case: problem discovery → 5 decision records → 28 user stories → working MVP. Appointment scheduling with availability enforcement, patient lifecycle, and role-based access — built on documented product decisions.</div>
         <div class="card-footer">
           <div class="tags">
             <span class="tag" data-i18n="t.case">Product case</span>
@@ -205,8 +205,8 @@
 
       <div class="card">
         <div class="card-title">YT Summarizer</div>
-        <div class="card-problem" data-i18n="c3.problem">A 10-minute video takes 10 minutes to judge. Titles and thumbnails don't show substance.</div>
-        <div class="card-body" data-i18n="c3.body">Full-stack AI app with phased roadmap. Three summarization modes (single / map-reduce / full extract) with auto-selection. Built-in model benchmarking. Product backlog with epics and deferral rationale.</div>
+        <div class="card-problem" data-i18n="c3.problem">You can't check if a video is worth watching without watching it.</div>
+        <div class="card-body" data-i18n="c3.body">YT Summarizer solves this: read the content of any YouTube video before deciding to watch it at all. A full-stack AI app with three summarization strategies, auto-selected by content length. Check the value first — then decide: watch in full, read the text, or chat with it.</div>
         <div class="card-footer">
           <div class="tags">
             <span class="tag" data-i18n="t.aiprod">AI product</span>
@@ -295,12 +295,12 @@
         'hero.sub': 'Hands-on projects exploring product thinking, AI workflows, and local LLM tooling. Each case documents the problem, decisions, and delivery — built to explore ideas and technology.',
         'section.projects': 'Selected Projects',
         'c1.title': 'Dental Scheduling MVP',
-        'c1.problem': 'Small clinics run scheduling on Google Calendar — no staff management, no patient lifecycle, no role control.',
-        'c1.body': 'Full product case: discovery → 5 documented decisions → 28 user stories → working app. Includes product hypothesis, MVP scope with explicit exclusions, and PDRs with rationale.',
+        'c1.problem': 'Small clinics run scheduling on Google Calendar — no role separation, no patient records, no booking rules. Double bookings and missed appointments are the norm.',
+        'c1.body': 'Full Product Owner case: problem discovery → 5 decision records → 28 user stories → working MVP. Appointment scheduling with availability enforcement, patient lifecycle, and role-based access — built on documented product decisions.',
         'c2.problem': 'Large link collections are unmanageable without consistent categorization.',
         'c2.body': 'Large link collections lose structure — manual labeling fails, cloud LLMs too costly. Built a local LLM classification pipeline (Ollama), empirically compared 7 models using agreement rate as quality signal, optimized with domain rules. Roadmap: fine-tuned transformer classifier.',
-        'c3.problem': 'A 10-minute video takes 10 minutes to judge. Titles and thumbnails don\'t show substance.',
-        'c3.body': 'Full-stack AI app with phased roadmap. Three summarization modes (single / map-reduce / full extract) with auto-selection. Built-in model benchmarking. Product backlog with epics and deferral rationale.',
+        'c3.problem': 'You can\'t check if a video is worth watching without watching it.',
+        'c3.body': 'YT Summarizer solves this: read the content of any YouTube video before deciding to watch it at all. A full-stack AI app with three summarization strategies, auto-selected by content length. Check the value first — then decide: watch in full, read the text, or chat with it.',
         'c4.problem': 'Most web content doesn\'t deserve full reading — you need the gist first.',
         'c4.body': 'Summarizes any web page using a local LLM (Ollama) — no API keys, you decide where your data goes. Chrome extension with deliberate UX: right-click selection, auto-open viewer, model rating system, custom prompt templates.',
         'c5.title': 'AI Career Agent',
@@ -411,11 +411,7 @@
     }
 
     const saved = localStorage.getItem('theme');
-    if (saved) {
-      setTheme(saved);
-    } else {
-      themeBtn.textContent = sysDark.matches ? '☀' : '☾';
-    }
+    setTheme(saved || 'light');
 
     themeBtn.addEventListener('click', () => {
       setTheme(currentTheme() === 'dark' ? 'light' : 'dark');
