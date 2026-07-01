@@ -73,7 +73,7 @@ The system is being redesigned to separate deterministic operations (file ops, d
 
 The pipeline, end to end:
 
-1. **Vacancy ingestion** — RSS push, or manual paste in Telegram
+1. **Vacancy ingestion** — auto via RSS push; Flutter Desktop app shows new vacancies with fit analysis and triggers local notifications
 2. **Deep analysis** — employer's real pain, hidden requirements, role archetype, VScore
 3. **Fit scoring** — Fit × VScore matrix → `apply` / `take a chance` / `decline`
 4. **Barrier identification** — what stands between this candidate and this role
@@ -125,8 +125,10 @@ The highest-value decisions in the workflow — apply/skip, approve/reject — r
 
 ---
 
-## Next Step
+## Current State & Next Step
 
-A deterministic orchestration layer that reduces LLM involvement to a small number of genuinely cognitive decisions.
+**Flutter Desktop app is live** — vacancy list, detail screen with verdict card, CV/cover letter preview. RSS auto-pipeline feeds it without manual input.
+
+**Blocked on LLM access** — Phase 2.5 (objection handling) and full CV generation require the pipeline to be re-enabled. The deterministic/cognitive split is designed and ready; LLM integration is the remaining unlock.
 
 Objective: lower cost, lower latency, more predictable output — without giving up decision quality.
