@@ -125,10 +125,10 @@ The highest-value decisions in the workflow — apply/skip, approve/reject — r
 
 ---
 
-## Current State & Next Step
+## Next Step
 
 **Flutter Desktop app is live** — vacancy list, detail screen with verdict card, CV/cover letter preview. RSS auto-pipeline feeds it without manual input.
 
-**Blocked on LLM access** — Phase 2.5 (objection handling) and full CV generation require the pipeline to be re-enabled. The deterministic/cognitive split is designed and ready; LLM integration is the remaining unlock.
+A deterministic orchestration layer that reduces LLM involvement to a small number of genuinely cognitive decisions.
 
 Objective: lower cost, lower latency, more predictable output — without giving up decision quality.
