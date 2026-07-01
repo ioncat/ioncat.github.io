@@ -127,8 +127,6 @@ The highest-value decisions in the workflow — apply/skip, approve/reject — r
 
 ## Next Step
 
-**Flutter Desktop app is live** — vacancy list, detail screen with verdict card, CV/cover letter preview. RSS auto-pipeline feeds it without manual input.
+**Flutter Desktop client is live** — a dedicated workspace where auto-analyzed vacancies arrive in an inbox with fit verdict, barrier breakdown, and CV/cover preview built in. The candidate makes decisions from one screen, not a step-by-step flow.
 
-A deterministic orchestration layer that reduces LLM involvement to a small number of genuinely cognitive decisions.
-
-Objective: lower cost, lower latency, more predictable output — without giving up decision quality.
+Next: full CV generation trigger from the app, objection handling UI, and deterministic orchestration to reduce LLM involvement to genuinely cognitive decisions only.
