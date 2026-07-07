@@ -29,6 +29,8 @@ Three issues surfaced repeatedly during my own search:
 
 Most AI CV tools optimize document generation. None of them optimize the decision of whether generating the document is worthwhile.
 
+![Career Agent — Telegram interface](asset/Flutter%20Main%20Screen.png)
+
 ---
 
 ## Key Product Decisions
