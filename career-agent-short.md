@@ -27,7 +27,7 @@ Three issues surfaced repeatedly during my own search:
 * **Hiring barriers stay invisible** until late in the process — usually after effort is already spent.
 * **Effort goes to applications that should never have been submitted.**
 
-Most AI CV tools optimize document generation. None of them optimize the decision of whether generating the document is worthwhile.
+Most AI CV tools I've seen optimize document generation — not the decision of whether generating the document is worthwhile in the first place.
 
 ![Career Agent — Flutter Desktop interface](asset/Flutter%20Main%20Screen.png)
 
