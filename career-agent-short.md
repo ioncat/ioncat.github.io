@@ -1,6 +1,6 @@
 # Career Agent — Product Brief
 
-**Version:** June 2026  
+**Version:** July 2026  
 **Author:** Alex Bondarenko · [LinkedIn](https://www.linkedin.com/in/alexibondarenko/) · [GitHub](https://github.com/ioncat/ai-career-agent)
 
 ---
@@ -13,7 +13,7 @@ Career Agent decides whether a vacancy is worth pursuing *before* any applicatio
 
 It reads the job description deeper than a candidate under first-impression bias, scores fit against the vacancy, surfaces hidden barriers, and produces a tailored CV only when the opportunity justifies the effort.
 
-Built and validated inside a real job search. ~80 vacancies processed, multi-user, documents generated automatically, cost tracked per vacancy ($0.32). The product runs on real vacancies, not synthetic examples.
+Built and validated inside a real job search. 700+ vacancies ingested, ~100 fully analyzed, multi-user, documents generated automatically, cost tracked per vacancy ($0.32). The product runs on real vacancies, not synthetic examples.
 
 ---
 
@@ -29,7 +29,7 @@ Three issues surfaced repeatedly during my own search:
 
 Most AI CV tools optimize document generation. None of them optimize the decision of whether generating the document is worthwhile.
 
-![Career Agent — Telegram interface](asset/Flutter%20Main%20Screen.png)
+![Career Agent — Flutter Desktop interface](asset/Flutter%20Main%20Screen.png)
 
 ---
 
@@ -63,9 +63,15 @@ Vacancies are pushed to the user instead of being searched for manually.
 
 *Why:* searching is repetitive; evaluation is the valuable act. Move the human effort to where it pays.
 
-### 5. Deterministic vs cognitive split
+### 5. Cost-gating pre-filter before any real reasoning
 
-The system is being redesigned to separate deterministic operations (file ops, dedup, PDF rendering) from genuine LLM reasoning — collapsing ~43 mixed steps down to 3 cognitive decision points.
+A cheap check — deterministic title/domain matching, with an optional LLM pass for less obvious cases — runs before the vacancy ever reaches the deep-analysis step. A vacancy that can't possibly be a fit never gets a real LLM call.
+
+*Why:* cost discipline has to start before the expensive step, not after it.
+
+### 6. Deterministic vs cognitive split
+
+The pipeline separates deterministic operations (file ops, dedup, PDF rendering) from genuine LLM reasoning — shipped: ~43 originally mixed steps collapsed down to a handful of real cognitive decision points.
 
 *Why:* most workflow steps need no intelligence. They add latency and cost for nothing.
 
@@ -75,22 +81,23 @@ The system is being redesigned to separate deterministic operations (file ops, d
 
 The pipeline, end to end:
 
-1. **Vacancy ingestion** — auto via RSS push; Flutter Desktop app shows new vacancies with fit analysis and triggers local notifications
-2. **Deep analysis** — employer's real pain, hidden requirements, role archetype, VScore
-3. **Fit scoring** — Fit × VScore matrix → `apply` / `take a chance` / `decline`
-4. **Barrier identification** — what stands between this candidate and this role
-5. **Gap resolution** — barriers resolved interactively, evidence saved to the profile, *before* anything is written
-6. **CV generation** — from real experience, tailored to the JD's actual pain
-7. **CV self-review** — agent checks its own draft against the adaptation plan before the user ever sees it
-8. **Cover letter generation**
+1. **Vacancy ingestion** — auto via RSS (push notification, then lands in the Flutter inbox); manual URL/paste goes straight to the inbox
+2. **Critical Blocker pre-filter** — cheap deterministic + optional LLM check; an obvious non-fit is flagged before real analysis spend
+3. **Deep analysis** — employer's real pain, hidden requirements, role archetype, VScore
+4. **Fit scoring** — Fit × VScore matrix → `apply` / `take a chance` / `decline`
+5. **Barrier identification** — what stands between this candidate and this role
+6. **Gap resolution** — barriers resolved interactively, evidence saved to the profile, *before* anything is written
+7. **CV generation** — from real experience, tailored to the JD's actual pain
+8. **CV self-review** — agent checks its own draft against the adaptation plan before the user ever sees it
+9. **Cover letter generation** — two variants, user picks
 
-The candidate makes two decisions. The system does the rest.
+The candidate approves/declines and reviews the CV. Both documents are downloaded straight from the Flutter app — Telegram is used only for the initial "new vacancy" push, not document delivery.
 
 ---
 
 ## Outcomes & Evidence
 
-* ~80 vacancies analyzed in a real active search
+* 700+ vacancies ingested, ~100 fully analyzed, in a real active search
 * Multi-user architecture (two live users, two profile types)
 * End-to-end pipeline operational — analyze → CV → cover letter
 * Cost measured and tracked at execution level
@@ -129,6 +136,6 @@ The highest-value decisions in the workflow — apply/skip, approve/reject — r
 
 ## Next Step
 
-**Flutter Desktop client is live** — a dedicated workspace where auto-analyzed vacancies arrive in an inbox with fit verdict, barrier breakdown, and CV/cover preview built in. The candidate makes decisions from one screen, not a step-by-step flow.
+**Flutter Desktop is the primary interface** — a dedicated workspace where auto-analyzed vacancies arrive in an inbox with fit verdict, barrier breakdown, and CV/cover preview built in. The candidate makes decisions from one screen, not a step-by-step chat flow; Telegram is now push-notification-only.
 
-Next: full CV generation trigger from the app, objection handling UI, and deterministic orchestration to reduce LLM involvement to genuinely cognitive decisions only.
+Next: a mobile port (the business logic already targets it — the remaining gap is an adaptive layout, not a rewrite), and continuing the deterministic/cognitive split to reduce LLM involvement to genuinely cognitive decisions only.
