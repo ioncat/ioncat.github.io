@@ -13,7 +13,9 @@ Career Agent decides whether a vacancy is worth pursuing *before* any applicatio
 
 It reads the job description deeper than a candidate under first-impression bias, scores fit against the vacancy, surfaces hidden barriers, and produces a tailored CV only when the opportunity justifies the effort.
 
-Built and validated inside a real job search. 700+ vacancies ingested, ~100 fully analyzed, multi-user, documents generated automatically, cost tracked per vacancy ($0.32). The product runs on real vacancies, not synthetic examples.
+Built and validated inside my own real job search — 700+ vacancies ingested, ~100 fully analyzed, documents generated automatically, cost tracked per vacancy ($0.32). Runs on real vacancies, not synthetic examples; supports more than one candidate profile, tested with two, not built as a multi-tenant product.
+
+This is a personal research practice in product judgment, not a company or a roadmap toward one — built to get hands-on in the exact problem space I'm applying to work in.
 
 ---
 
@@ -39,13 +41,13 @@ Most AI CV tools I've seen optimize document generation — not the decision of 
 
 Nothing is generated until the system returns a go/no-go.
 
-The agent scores two separate things: how well the candidate fits the role, and how good the vacancy itself is on its own merits — company tier, market scope, remote policy, and five other dimensions, collapsed into a single **VScore**. A **Fit × VScore matrix** combines both into one of three recommendations — `apply` · `take a chance` · `decline`. A `decline` stops the pipeline cold: no CV, no cost.
+The agent scores two separate things: how well the candidate fits the role, and how good the vacancy itself is on its own merits — company tier, market scope, remote policy, and five other dimensions. Combining both produces one of three recommendations — `apply` · `take a chance` · `decline`. A `decline` stops the pipeline cold: no CV, no cost.
 
 *Why:* effort should follow a recommendation, not precede it.
 
 ### 2. Vertical focus: PdM / PO
 
-The product targets Product Managers and Product Owners, not all professions.
+It's scoped to Product Managers and Product Owners, not all professions.
 
 Product roles carry archetypes that generic tools miss entirely. The fit analysis distinguishes a **Founder Proxy** from an **Executor** — an archetype mismatch is a silent hire-killer, and a CV tuned to the wrong one reads wrong to the hiring manager no matter how polished it is.
 
@@ -89,8 +91,8 @@ The pipeline, end to end:
 
 1. **Vacancy ingestion** — auto via RSS, saved straight to the database and surfaced in the Flutter inbox; a Telegram push is just a heads-up, not the destination. Manual URL/paste goes straight to the inbox the same way
 2. **Critical Blocker pre-filter** — cheap deterministic + optional LLM check; an obvious non-fit is flagged before real analysis spend
-3. **Deep analysis** — employer's real pain, hidden requirements, role archetype, VScore
-4. **Fit scoring** — Fit × VScore matrix → `apply` / `take a chance` / `decline`
+3. **Deep analysis** — employer's real pain, hidden requirements, role archetype, vacancy quality
+4. **Fit scoring** — candidate fit combined with vacancy quality → `apply` / `take a chance` / `decline`
 5. **Barrier identification** — what stands between this candidate and this role
 6. **Gap resolution** — barriers resolved interactively, evidence saved to the profile, *before* anything is written
 7. **CV generation** — from real experience, tailored to the JD's actual pain
@@ -105,7 +107,7 @@ The candidate approves/declines and reviews the CV. Both documents are downloade
 ## Outcomes & Evidence
 
 * 700+ vacancies ingested, ~100 fully analyzed, in a real active search
-* Multi-user architecture (two live users, two profile types)
+* Architecture supports more than one candidate profile — tested with two, including a different professional archetype
 * End-to-end pipeline operational — analyze → CV → cover letter
 * Cost measured and tracked at execution level
 * Prompt caching live

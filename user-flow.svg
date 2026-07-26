@@ -37,14 +37,14 @@
   <!-- STEP 3 -->
   <rect x="160" y="230" width="360" height="52" rx="6" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1.5"/>
   <text x="340" y="252" text-anchor="middle" fill="#111827" font-size="13" font-weight="600">3. Deep Analysis  <tspan fill="#6b7280" font-weight="400" font-size="11">(Phase 1)</tspan></text>
-  <text x="340" y="270" text-anchor="middle" fill="#6b7280" font-size="11">Employer pain · Archetype · VScore (8 dims)</text>
+  <text x="340" y="270" text-anchor="middle" fill="#6b7280" font-size="11">Employer pain · Archetype · vacancy quality (8 dims)</text>
 
   <line x1="340" y1="282" x2="340" y2="304" stroke="#6b7280" stroke-width="1.5" marker-end="url(#arrow)"/>
 
   <!-- STEP 4 -->
   <rect x="160" y="306" width="360" height="52" rx="6" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1.5"/>
   <text x="340" y="328" text-anchor="middle" fill="#111827" font-size="13" font-weight="600">4. Fit Scoring  <tspan fill="#6b7280" font-weight="400" font-size="11">(Phase 2)</tspan></text>
-  <text x="340" y="346" text-anchor="middle" fill="#6b7280" font-size="11">Fit × VScore matrix · Barriers · Adaptation Plan</text>
+  <text x="340" y="346" text-anchor="middle" fill="#6b7280" font-size="11">Fit + vacancy quality · Barriers · Adaptation Plan</text>
 
   <line x1="340" y1="358" x2="340" y2="384" stroke="#6b7280" stroke-width="1.5" marker-end="url(#arrow)"/>
 
