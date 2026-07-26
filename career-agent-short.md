@@ -39,7 +39,7 @@ Most AI CV tools I've seen optimize document generation — not the decision of 
 
 Nothing is generated until the system returns a go/no-go.
 
-The agent scores the vacancy across 8 dimensions (vacancy attractiveness) and runs a **Fit × VScore matrix** that outputs one of three recommendations — `apply` · `take a chance` · `decline`. A `decline` stops the pipeline cold: no CV, no cost.
+The agent scores two separate things: how well the candidate fits the role, and how good the vacancy itself is on its own merits — company tier, market scope, remote policy, and five other dimensions, collapsed into a single **VScore**. A **Fit × VScore matrix** combines both into one of three recommendations — `apply` · `take a chance` · `decline`. A `decline` stops the pipeline cold: no CV, no cost.
 
 *Why:* effort should follow a recommendation, not precede it.
 
@@ -75,13 +75,19 @@ The pipeline separates deterministic operations (file ops, dedup, PDF rendering)
 
 *Why:* most workflow steps need no intelligence. They add latency and cost for nothing.
 
+### 7. A second editorial pass, gated by outcome not by default
+
+A dedicated editorial-review pass — checking for AI-tell writing patterns, credibility, and accidental echoes of the job posting's own language — runs only when a vacancy already cleared the fit bar (`apply`, high score). Verified empirically that an LLM auditing its own just-written text in the same context is measurably more lenient than a fresh, isolated pass on identical text — so the audit runs isolated from the drafting step, not chained onto it.
+
+*Why:* rigor should scale with stakes. Auditing every CV the same way a strong-match CV gets audited would blow the unit economics for vacancies that were never going anywhere.
+
 ---
 
 ## Solution
 
 The pipeline, end to end:
 
-1. **Vacancy ingestion** — auto via RSS (push notification, then lands in the Flutter inbox); manual URL/paste goes straight to the inbox
+1. **Vacancy ingestion** — auto via RSS, saved straight to the database and surfaced in the Flutter inbox; a Telegram push is just a heads-up, not the destination. Manual URL/paste goes straight to the inbox the same way
 2. **Critical Blocker pre-filter** — cheap deterministic + optional LLM check; an obvious non-fit is flagged before real analysis spend
 3. **Deep analysis** — employer's real pain, hidden requirements, role archetype, VScore
 4. **Fit scoring** — Fit × VScore matrix → `apply` / `take a chance` / `decline`
@@ -90,6 +96,7 @@ The pipeline, end to end:
 7. **CV generation** — from real experience, tailored to the JD's actual pain
 8. **CV self-review** — agent checks its own draft against the adaptation plan before the user ever sees it
 9. **Cover letter generation** — two variants, user picks
+10. **Editorial audit** *(opt-in)* — a second LLM pass, run only for genuinely strong matches, checks the CV and cover for naturalness, credibility, and phrasing that accidentally echoes the job posting's own wording back at the employer
 
 The candidate approves/declines and reviews the CV. Both documents are downloaded straight from the Flutter app — Telegram is used only for the initial "new vacancy" push, not document delivery.
 
