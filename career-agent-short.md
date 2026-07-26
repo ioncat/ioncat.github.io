@@ -13,9 +13,7 @@ Career Agent decides whether a vacancy is worth pursuing *before* any applicatio
 
 It reads the job description deeper than a candidate under first-impression bias, scores fit against the vacancy, surfaces hidden barriers, and produces a tailored CV only when the opportunity justifies the effort.
 
-Built and validated inside my own real job search — 700+ vacancies ingested, ~100 fully analyzed, documents generated automatically, cost tracked per vacancy ($0.32). Runs on real vacancies, not synthetic examples; supports more than one candidate profile, tested with two, not built as a multi-tenant product.
-
-This is a personal research practice in product judgment, not a company or a roadmap toward one — built to get hands-on in the exact problem space I'm applying to work in.
+Built and validated inside my own real job search — 700+ vacancies ingested, ~100 fully analyzed, documents generated automatically, cost tracked per vacancy ($0.32). Runs on real vacancies, not synthetic examples.
 
 ---
 
@@ -51,7 +49,7 @@ It's scoped to Product Managers and Product Owners, not all professions.
 
 Product roles carry archetypes that generic tools miss entirely. The fit analysis distinguishes a **Founder Proxy** from an **Executor** — an archetype mismatch is a silent hire-killer, and a CV tuned to the wrong one reads wrong to the hiring manager no matter how polished it is.
 
-*Why:* a narrow ICP buys fit-assessment accuracy that breadth can't.
+*Why:* a narrow target user buys fit-assessment accuracy that breadth can't.
 
 ### 3. Human approval on irreversible actions
 
@@ -107,7 +105,6 @@ The candidate approves/declines and reviews the CV. Both documents are downloade
 ## Outcomes & Evidence
 
 * 700+ vacancies ingested, ~100 fully analyzed, in a real active search
-* Architecture supports more than one candidate profile — tested with two, including a different professional archetype
 * End-to-end pipeline operational — analyze → CV → cover letter
 * Cost measured and tracked at execution level
 * Prompt caching live
@@ -127,7 +124,7 @@ Cost tracking is built into the platform and recorded per run. That visibility w
 
 ### Product focus beats generality
 
-The original vision was broader. Product-specific hiring patterns turned out valuable enough to justify narrowing the ICP to PdM / PO — and the narrowing made the fit assessment measurably sharper.
+The original vision was broader. Product-specific hiring patterns turned out valuable enough to justify narrowing the target user to PdM / PO — and the narrowing made the fit assessment measurably sharper.
 
 ### Many "AI problems" are actually workflow problems
 
@@ -143,8 +140,6 @@ The highest-value decisions in the workflow — apply/skip, approve/reject — r
 
 ---
 
-## Next Step
+## Interface
 
 **Flutter Desktop is the primary interface** — a dedicated workspace where auto-analyzed vacancies arrive in an inbox with fit verdict, barrier breakdown, and CV/cover preview built in. The candidate makes decisions from one screen, not a step-by-step chat flow; Telegram is now push-notification-only.
-
-Next: a mobile port (the business logic already targets it — the remaining gap is an adaptive layout, not a rewrite), and continuing the deterministic/cognitive split to reduce LLM involvement to genuinely cognitive decisions only.
