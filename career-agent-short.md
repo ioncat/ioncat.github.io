@@ -1,39 +1,46 @@
-# Career Agent — Product Brief
+# Career Agent — Brief
 
 **Version:** July 2026  
 **Author:** Alex Bondarenko · [LinkedIn](https://www.linkedin.com/in/alexibondarenko/) · [GitHub](https://github.com/ioncat/ai-career-agent)
 
 ---
 
-AI-powered job search counselor for Product Managers and Product Owners.
+AI Career Agent helps you get more interview invitations by automatically creating tailored CVs that reflect the strongest match between your experience and each job's requirements.
+
 
 ## Executive Summary
 
-Career Agent decides whether a vacancy is worth pursuing *before* any application material is generated.
+### Problem - Climbing the wrong wall
 
-It reads the job description deeper than a candidate under first-impression bias, scores fit against the vacancy, surfaces hidden barriers, and produces a tailored CV only when the opportunity justifies the effort.
-
-Built and validated inside a real, active job search — 700+ vacancies ingested, ~100 fully analyzed, documents generated automatically, cost tracked per vacancy ($0.32). Runs on real vacancies, not synthetic examples.
-
----
-
-## Problem
-
-A Product Manager may spend a minimum of 30–90 minutes on manual CV tailoring before knowing whether they have a realistic shot. In an active search — around 30 to 70 vacancies — that's weeks to months of effort with no quality guarantee.
+A Product Manager may spend a minimum of 30–90 minutes on manual CV tailoring before knowing whether they have a realistic shot. 
+In an active search, at dozens of vacancies a day, that's weeks to months of effort with no result guarantee.
+This may take up to several months to understand where the gap between expectations and reality is.
 
 Three issues surfaced repeatedly in real-world use:
 
 * **Fit is judged emotionally, not systematically.** First impression anchors the decision. Real example: a vacancy self-assessed at 10/10 — the system returned 4/10. A 6-point delta, caused by one hidden requirement missed on first read.
 * **Hiring barriers stay invisible** until late in the process — usually after effort is already spent.
 * **Effort goes to applications that should never have been submitted.**
+* **Self-perception and CV signal don't match.** How candidates see their own skills and fit for a role isn't what the CV actually tells a recruiter. That gap is why strong candidates get passed over without ever knowing why.
 
 Most AI CV tools optimize document generation — not the decision of whether generating the document is worthwhile in the first place.
+
+
+---
+
+
+### Solution - A CV doesn't get you hired. It gets you invited.
+
+* Instantly analyzes vacancies and delivers a clear go/no-go signal.
+* Writes a CV that sends the employer signals of the candidate's fit to the vacancy's requirements.  
+* Saves 90% of the user's time and effort.  
+* Scoped to one vertical: Product Managers and Product Owners.
 
 ![Career Agent — Flutter Desktop interface](asset/Flutter%20Main%20Screen.png)
 
 ---
 
-## Key Product Decisions
+## Key Decisions
 
 ### 1. Decision before document
 
@@ -47,7 +54,7 @@ The system scores two separate things: how well the candidate fits the role, and
 
 It's scoped to Product Managers and Product Owners, not all professions.
 
-Product roles carry archetypes that generic tools often miss. The fit analysis scores against a taxonomy of ten role archetypes — Founder Proxy, Executor, Discovery-heavy, Platform/Systems PM, Growth PM, and others, combinable in pairs — because an archetype mismatch is a silent hire-killer: a CV tuned to the wrong one reads wrong to the hiring manager no matter how polished it is.
+Product roles carry archetypes that generic tools often miss. The fit analysis scores against a taxonomy of ten role archetypes (Founder Proxy, Executor, Discovery-heavy, Platform/Systems PM, Growth PM, and others, combinable in pairs). An archetype mismatch is a silent hire-killer: a CV tuned to the wrong one reads wrong to the hiring manager no matter how polished it is.
 
 *Why:* a narrow target user buys fit-assessment accuracy that breadth can't.
 
@@ -65,7 +72,7 @@ Vacancies are pushed to the user instead of being searched for manually. RSS int
 
 ### 5. Cost-gating pre-filter before any real reasoning
 
-A cheap check — deterministic title/domain matching, with an optional LLM pass for less obvious cases — runs before the vacancy ever reaches the deep-analysis step. A vacancy that can't possibly be a fit never gets a real LLM call.
+A cheap check runs before the vacancy ever reaches the deep-analysis step: deterministic title/domain matching, with an optional LLM pass for less obvious cases. A vacancy that can't possibly be a fit never gets a real LLM call.
 
 *Why:* cost discipline has to start before the expensive step, not after it.
 
@@ -77,13 +84,13 @@ The pipeline separates deterministic operations (file ops, dedup, PDF rendering)
 
 ### 7. A second editorial pass, gated by outcome not by default
 
-A dedicated editorial-review pass — checking for AI-tell writing patterns, credibility, and accidental echoes of the job posting's own language — runs only when a vacancy already cleared the fit bar (`apply`, high score). Verified empirically that an LLM auditing its own just-written text in the same context is measurably more lenient than a fresh, isolated pass on identical text — so the audit runs isolated from the drafting step, not chained onto it.
+A dedicated editorial-review pass runs only when a vacancy already cleared the fit bar (`apply`, high score) — checking for AI-tell writing patterns, credibility, and accidental echoes of the job posting's own language. Verified empirically that an LLM auditing its own just-written text in the same context is measurably more lenient than a fresh, isolated pass on identical text — so the audit runs isolated from the drafting step, not chained onto it.
 
-*Why:* thorough checking should be reserved for vacancies worth the effort. Running this same expensive audit on every CV — including ones for jobs that were never a real fit — would make the whole system too expensive to run.
+*Why:* thorough checking should be reserved for vacancies worth the effort. Running this same expensive audit on every CV, including ones for jobs that were never a real fit, would make the whole system too expensive to run.
 
 ---
 
-## Solution
+## How It Works
 
 The pipeline, end to end:
 
@@ -122,7 +129,7 @@ Cost tracking is built into the platform and recorded per run. That visibility w
 
 ## Key Learnings
 
-### Product focus beats generality
+### Narrow focus beats generality
 
 The original vision was broader. Product-specific hiring patterns turned out valuable enough to justify narrowing the target user to PdM / PO — and the narrowing made the fit assessment measurably sharper.
 
@@ -130,13 +137,13 @@ The original vision was broader. Product-specific hiring patterns turned out val
 
 Several bottlenecks looked like they needed better prompts. In practice they needed better process design — which is what the deterministic/cognitive split is.
 
-### Cost is a product constraint
+### Cost is a real constraint
 
 Tracking token usage and per-run cost changed architectural priorities and roadmap order. $0.32 isn't a vanity metric; it's the number the unit economics live or die on.
 
 ### Human judgment stays critical
 
-The highest-value decisions in the workflow — apply/skip, approve/reject — remain human. The system is built to improve decision *quality*, not to remove the decision maker.
+The highest-value decisions in the workflow (apply/skip, approve/reject) remain human. The system is built to improve decision *quality*, not to remove the decision maker.
 
 ---
 

@@ -303,7 +303,7 @@
       const headings = content.querySelectorAll('h2');
       let solutionH2 = null;
       headings.forEach(h => {
-        if (/solution|решение/i.test(h.textContent.trim())) solutionH2 = h;
+        if (/solution|how it works|решение/i.test(h.textContent.trim())) solutionH2 = h;
       });
       if (!solutionH2) return;
 
