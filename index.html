@@ -122,9 +122,15 @@
 
     /* ── Hero ── */
     .hero { margin-bottom: 3.5rem; }
+    .hero-label-row {
+      display: flex; align-items: center; gap: 0.6em; margin-bottom: 0.75rem;
+    }
     .hero-label {
       font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem;
+      text-transform: uppercase; color: var(--accent);
+    }
+    .hero-byline {
+      font-size: 0.85rem; font-weight: 500; color: var(--muted);
     }
     .hero h1 {
       font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 700;
@@ -232,7 +238,10 @@
   <div class="page">
 
     <header class="hero">
-      <div class="hero-label" data-i18n="hero.label">Portfolio</div>
+      <div class="hero-label-row">
+        <span class="hero-label" data-i18n="hero.label">Portfolio</span>
+        <span class="hero-byline">· Alex Bondarenko</span>
+      </div>
       <h1 data-i18n-html="hero.title">Product Experiments:<br><span class="highlight">AI, Automation & Tools</span></h1>
       <p data-i18n="hero.sub">Hands-on projects exploring product thinking, AI workflows, and local and cloud LLMs. Each case documents the problem, decisions, and delivery — built to explore ideas and technology.</p>
     </header>
@@ -420,7 +429,6 @@
 
     <footer class="footer">
       <div class="footer-links">
-        <span>Alex Bondarenko</span>
         <a href="https://github.com/ioncat" target="_blank" rel="noopener">GitHub</a>
         <a href="https://www.linkedin.com/in/alexibondarenko/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
