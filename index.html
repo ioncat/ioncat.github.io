@@ -37,6 +37,9 @@
       --tag-bg: #eceef8; --tag-text: #565978;
       --stack-bg: #f6f5fb; --stack-text: #4a4d68; --stack-border: #e2e0f3;
       --badge-bg: #ece9fa; --badge-text: #4d3fb0; --badge-dot: #6259c8;
+      --badge-summ-bg: #e3f5f3; --badge-summ-text: #0f7a74; --badge-summ-dot: #1e9e98;
+      --badge-cls-bg: #fdf1e3; --badge-cls-text: #a15c07; --badge-cls-dot: #d97e1f;
+      --badge-auto-bg: #e5f0fb; --badge-auto-text: #1d5fa3; --badge-auto-dot: #2f7fd1;
       --ctrl-bg: #ffffff; --ctrl-text: #696d88; --ctrl-hover: #1a1d27;
     }
     /* Dark when system prefers dark */
@@ -47,6 +50,9 @@
         --tag-bg: #22253a; --tag-text: #a0a4c0;
         --stack-bg: #1e2130; --stack-text: #b7bad4; --stack-border: #2d3048;
         --badge-bg: #2a2650; --badge-text: #b6a9f5; --badge-dot: #9b8ef0;
+        --badge-summ-bg: #163330; --badge-summ-text: #7fd6cd; --badge-summ-dot: #5cc8c2;
+        --badge-cls-bg: #3a2a12; --badge-cls-text: #e8b869; --badge-cls-dot: #d99a3f;
+        --badge-auto-bg: #1a2c42; --badge-auto-text: #7cb3e8; --badge-auto-dot: #5599d9;
         --ctrl-bg: #1a1d27; --ctrl-text: #8b8fa8; --ctrl-hover: #e2e4ed;
       }
     }
@@ -57,6 +63,9 @@
       --tag-bg: #22253a; --tag-text: #a0a4c0;
       --stack-bg: #1e2130; --stack-text: #b7bad4; --stack-border: #2d3048;
       --badge-bg: #2a2650; --badge-text: #b6a9f5; --badge-dot: #9b8ef0;
+      --badge-summ-bg: #163330; --badge-summ-text: #7fd6cd; --badge-summ-dot: #5cc8c2;
+      --badge-cls-bg: #3a2a12; --badge-cls-text: #e8b869; --badge-cls-dot: #d99a3f;
+      --badge-auto-bg: #1a2c42; --badge-auto-text: #7cb3e8; --badge-auto-dot: #5599d9;
       --ctrl-bg: #1a1d27; --ctrl-text: #8b8fa8; --ctrl-hover: #e2e4ed;
     }
     [data-theme="light"] {
@@ -65,6 +74,9 @@
       --tag-bg: #eceef8; --tag-text: #565978;
       --stack-bg: #f6f5fb; --stack-text: #4a4d68; --stack-border: #e2e0f3;
       --badge-bg: #ece9fa; --badge-text: #4d3fb0; --badge-dot: #6259c8;
+      --badge-summ-bg: #e3f5f3; --badge-summ-text: #0f7a74; --badge-summ-dot: #1e9e98;
+      --badge-cls-bg: #fdf1e3; --badge-cls-text: #a15c07; --badge-cls-dot: #d97e1f;
+      --badge-auto-bg: #e5f0fb; --badge-auto-text: #1d5fa3; --badge-auto-dot: #2f7fd1;
       --ctrl-bg: #ffffff; --ctrl-text: #696d88; --ctrl-hover: #1a1d27;
     }
 
@@ -165,6 +177,14 @@
       transition: background var(--transition), color var(--transition);
     }
     .badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--badge-dot); }
+    .badge-case { background: var(--badge-bg); color: var(--badge-text); }
+    .badge-case::before { background: var(--badge-dot); }
+    .badge-summarization { background: var(--badge-summ-bg); color: var(--badge-summ-text); }
+    .badge-summarization::before { background: var(--badge-summ-dot); }
+    .badge-classification { background: var(--badge-cls-bg); color: var(--badge-cls-text); }
+    .badge-classification::before { background: var(--badge-cls-dot); }
+    .badge-automation { background: var(--badge-auto-bg); color: var(--badge-auto-text); }
+    .badge-automation::before { background: var(--badge-auto-dot); }
     .facets { display: flex; flex-direction: column; gap: 0.55rem; margin: 0.15rem 0 0.1rem; }
     .facet { display: flex; flex-direction: column; gap: 0.35rem; }
     .facet-label {
@@ -221,7 +241,7 @@
     <div class="cards">
 
       <div class="card">
-        <span class="badge" data-i18n="t.case">Product case</span>
+        <span class="badge badge-case" data-i18n="t.case">Product case</span>
         <div class="card-title" data-i18n="c1.title">Dental Scheduling MVP</div>
         <div class="card-problem" data-i18n="c1.problem">Small clinics run scheduling on Google Calendar — no role separation, no patient records, no booking rules. Double bookings and missed appointments are the norm.</div>
         <div class="card-body" data-i18n="c1.body">Full Product Owner case: problem discovery → 5 decision records → 28 user stories → working MVP. Appointment scheduling with availability enforcement, patient lifecycle, and role-based access — built on documented product decisions.</div>
@@ -256,7 +276,7 @@
       </div>
 
       <div class="card">
-        <span class="badge" data-i18n="t.summarization">Summarization</span>
+        <span class="badge badge-summarization" data-i18n="t.summarization">Summarization</span>
         <div class="card-title">YT Summarizer</div>
         <div class="card-problem" data-i18n="c3.problem">You can't check if a video is worth watching without watching it.</div>
         <div class="card-body" data-i18n="c3.body">YT Summarizer solves this: read the content of any YouTube video before deciding to watch it at all. A full-stack AI app with three summarization strategies, auto-selected by content length. Check the value first — then decide: watch in full, read the text, or chat with it.</div>
@@ -291,7 +311,7 @@
       </div>
 
       <div class="card">
-        <span class="badge" data-i18n="t.summarization">Summarization</span>
+        <span class="badge badge-summarization" data-i18n="t.summarization">Summarization</span>
         <div class="card-title">LLM Onpage Summarizer</div>
         <div class="card-problem" data-i18n="c4.problem">Most web content doesn't deserve full reading — you need the gist first.</div>
         <div class="card-body" data-i18n="c4.body">Summarizes any web page using a local LLM (Ollama) — no API keys, you decide where your data goes. Chrome extension with deliberate UX: right-click selection, auto-open viewer, model rating system, custom prompt templates.</div>
@@ -325,7 +345,7 @@
       </div>
 
       <div class="card">
-        <span class="badge" data-i18n="t.auto">Automation</span>
+        <span class="badge badge-automation" data-i18n="t.auto">Automation</span>
         <div class="card-title" data-i18n="c5.title">AI Career Agent</div>
         <div class="card-problem" data-i18n="c5.problem">Candidates apply without knowing their competitive fit — and submit CVs that don't address the employer's actual needs.</div>
         <div class="card-body" data-i18n="c5.body">AI pipeline that flips the sequence: fit assessment before CV generation. Designed with PM archetype logic (Delivery vs. Discovery, Executor vs. Founder Proxy, Enterprise vs. Startup, B2B vs. B2C, Growth vs. Support) to adapt CV framing per role type. Fit × Attraction matrix gates CV generation. Flutter Desktop client with RSS auto-discovery, local notifications, and human-in-the-loop approval.</div>
@@ -346,8 +366,6 @@
             <div class="facet-row">
               <span class="tag">Deterministic FSM</span>
               <span class="tag">Multi-provider LLM</span>
-              <span class="tag">Gated pipeline</span>
-              <span class="tag">Fit × Attraction matrix</span>
               <span class="tag">Human-in-the-loop</span>
               <span class="tag">RSS auto-discovery</span>
             </div>
@@ -363,7 +381,7 @@
       </div>
 
       <div class="card">
-        <span class="badge" data-i18n="t.classification">Classification</span>
+        <span class="badge badge-classification" data-i18n="t.classification">Classification</span>
         <div class="card-title">Web Page Classifier</div>
         <div class="card-problem" data-i18n="c2.problem">Large link collections are unmanageable without consistent categorization.</div>
         <div class="card-body" data-i18n="c2.body">Large link collections lose structure — manual labeling fails, cloud LLMs too costly. Built a local LLM classification pipeline (Ollama), empirically compared 7 models using agreement rate as quality signal, optimized with domain rules. Includes a FastAPI web UI for browsing, searching, and manually correcting categories. Fine-tunes a supervised xlm-roberta-base classifier on the labeled data. Roadmap: deploy the classifier to production with confidence-based fallback to the LLM.</div>
