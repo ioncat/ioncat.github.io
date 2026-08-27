@@ -3,7 +3,7 @@
 **Project:** Single-page portfolio (`index.html`) linking out to individual project repos.
 **Follows global strategy:** `E:\My files\0 My_Dev\my_prj\my_claude\` (INTERACTION_RULES.md, DOCUMENTATION_STRATEGY.md)
 
-**Full findings archive:** [`docs/discovery/card-content-inventory.md`](docs/discovery/card-content-inventory.md) — the complete ranked Stack/Method inventory for every card (not just the ~6+6 shown on the card), with what got cut and why. Check it before re-researching a project from scratch, and append to it — don't overwrite — whenever a new exhaustive pass is run (step 5 below).
+**Full findings archive:** `docs/discovery/card-content-inventory.md` — local-only, gitignored (per explicit user direction: this is internal working notes, not meant for the public repo). The complete ranked Stack/Method inventory for every card (not just the ~6+6 shown on the card), with what got cut and why. Check it before re-researching a project from scratch, and append to it — don't overwrite — whenever a new exhaustive pass is run (step 5 below). If it's missing on a fresh clone, it simply hasn't been created on that machine yet — recreate from scratch or copy from wherever it was last maintained, don't assume its absence means the process wasn't followed.
 
 ---
 
