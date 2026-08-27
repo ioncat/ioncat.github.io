@@ -311,35 +311,37 @@
       </div>
 
       <div class="card">
-        <span class="badge badge-summarization" data-i18n="t.summarization">Summarization</span>
-        <div class="card-title">LLM Onpage Summarizer</div>
-        <div class="card-problem" data-i18n="c4.problem">Most web content doesn't deserve full reading — you need the gist first.</div>
-        <div class="card-body" data-i18n="c4.body">Summarizes any web page using a local LLM (Ollama) — no API keys, you decide where your data goes. Chrome extension with deliberate UX: right-click selection, auto-open viewer, model rating system, custom prompt templates.</div>
+        <span class="badge badge-classification" data-i18n="t.classification">Classification</span>
+        <div class="card-title">Web Page Classifier</div>
+        <div class="card-problem" data-i18n="c2.problem">Large link collections are unmanageable without consistent categorization.</div>
+        <div class="card-body" data-i18n="c2.body">Large link collections lose structure — manual labeling fails, cloud LLMs too costly. Built a local LLM classification pipeline (Ollama), empirically compared 7 models using agreement rate as quality signal, optimized with domain rules. Includes a FastAPI web UI for browsing, searching, and manually correcting categories. Fine-tunes a supervised xlm-roberta-base classifier on the labeled data. Roadmap: deploy the classifier to production with confidence-based fallback to the LLM.</div>
         <div class="facets">
           <div class="facet">
             <div class="facet-label" data-i18n="facet.stack">Stack</div>
             <div class="facet-row">
-              <span class="stack-chip">Chrome MV3</span>
               <span class="stack-chip">Ollama</span>
-              <span class="stack-chip">Readability.js</span>
-              <span class="stack-chip">Vanilla JS</span>
-              <span class="stack-chip">Least-privilege permissions</span>
+              <span class="stack-chip">PyTorch</span>
+              <span class="stack-chip">Transformers</span>
+              <span class="stack-chip">FastAPI</span>
+              <span class="stack-chip">scikit-learn</span>
+              <span class="stack-chip">SQLite</span>
             </div>
           </div>
           <div class="facet">
             <div class="facet-label" data-i18n="facet.method">Method</div>
             <div class="facet-row">
-              <span class="tag">Content-extraction fallback</span>
-              <span class="tag">Multi-turn chat</span>
-              <span class="tag">Model curation</span>
-              <span class="tag">Local-first architecture</span>
-              <span class="tag">Prompt templates</span>
+              <span class="tag">Supervised learning</span>
+              <span class="tag">LLM evaluation</span>
+              <span class="tag">ETL pipeline</span>
+              <span class="tag">Prompt engineering</span>
+              <span class="tag">Taxonomy design</span>
+              <span class="tag">Human-in-the-loop</span>
             </div>
           </div>
         </div>
         <div class="card-footer">
           <div class="card-links">
-            <a class="card-link" href="https://github.com/ioncat/llm-onpage-summarizer" target="_blank" rel="noopener" data-i18n="link.view">View →</a>
+            <a class="card-link" href="https://github.com/ioncat/web-page-classifier" target="_blank" rel="noopener" data-i18n="link.view">View →</a>
           </div>
         </div>
       </div>
@@ -381,37 +383,35 @@
       </div>
 
       <div class="card">
-        <span class="badge badge-classification" data-i18n="t.classification">Classification</span>
-        <div class="card-title">Web Page Classifier</div>
-        <div class="card-problem" data-i18n="c2.problem">Large link collections are unmanageable without consistent categorization.</div>
-        <div class="card-body" data-i18n="c2.body">Large link collections lose structure — manual labeling fails, cloud LLMs too costly. Built a local LLM classification pipeline (Ollama), empirically compared 7 models using agreement rate as quality signal, optimized with domain rules. Includes a FastAPI web UI for browsing, searching, and manually correcting categories. Fine-tunes a supervised xlm-roberta-base classifier on the labeled data. Roadmap: deploy the classifier to production with confidence-based fallback to the LLM.</div>
+        <span class="badge badge-summarization" data-i18n="t.summarization">Summarization</span>
+        <div class="card-title">LLM Onpage Summarizer</div>
+        <div class="card-problem" data-i18n="c4.problem">Most web content doesn't deserve full reading — you need the gist first.</div>
+        <div class="card-body" data-i18n="c4.body">Summarizes any web page using a local LLM (Ollama) — no API keys, you decide where your data goes. Chrome extension with deliberate UX: right-click selection, auto-open viewer, model rating system, custom prompt templates.</div>
         <div class="facets">
           <div class="facet">
             <div class="facet-label" data-i18n="facet.stack">Stack</div>
             <div class="facet-row">
+              <span class="stack-chip">Chrome MV3</span>
               <span class="stack-chip">Ollama</span>
-              <span class="stack-chip">PyTorch</span>
-              <span class="stack-chip">Transformers</span>
-              <span class="stack-chip">FastAPI</span>
-              <span class="stack-chip">scikit-learn</span>
-              <span class="stack-chip">SQLite</span>
+              <span class="stack-chip">Readability.js</span>
+              <span class="stack-chip">Vanilla JS</span>
+              <span class="stack-chip">Least-privilege permissions</span>
             </div>
           </div>
           <div class="facet">
             <div class="facet-label" data-i18n="facet.method">Method</div>
             <div class="facet-row">
-              <span class="tag">Supervised learning</span>
-              <span class="tag">LLM evaluation</span>
-              <span class="tag">ETL pipeline</span>
-              <span class="tag">Prompt engineering</span>
-              <span class="tag">Taxonomy design</span>
-              <span class="tag">Human-in-the-loop</span>
+              <span class="tag">Content-extraction fallback</span>
+              <span class="tag">Multi-turn chat</span>
+              <span class="tag">Model curation</span>
+              <span class="tag">Local-first architecture</span>
+              <span class="tag">Prompt templates</span>
             </div>
           </div>
         </div>
         <div class="card-footer">
           <div class="card-links">
-            <a class="card-link" href="https://github.com/ioncat/web-page-classifier" target="_blank" rel="noopener" data-i18n="link.view">View →</a>
+            <a class="card-link" href="https://github.com/ioncat/llm-onpage-summarizer" target="_blank" rel="noopener" data-i18n="link.view">View →</a>
           </div>
         </div>
       </div>
