@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Agent — in 9 slides</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Patrick+Hand&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f4f5fa; --text: #1a1d27; --muted: #696d88; --accent2: #1e9e98; --border: #dde0ef; --surface: #ffffff;
+      /* the sketch paper: the same in light and dark, like a printed card */
+      --paper: #f3efe3; --ink: #2b2b2b; --ink2: #5a574d; --peach: #f2b887; --peach-soft: #f6d3b3;
+      --teal: #a5d1cc; --teal-line: #4a9b93; --rust: #c4622d; --card: #faf6ec; --con-bg: #f8e1dc; --con-line: #c0463c;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #0f1117; --text: #e2e4ed; --muted: #8b8fa8; --accent2: #5cc8c2; --border: #2a2d3a; --surface: #1a1d27; }
+    }
+    [data-theme="dark"] { --bg: #0f1117; --text: #e2e4ed; --muted: #8b8fa8; --accent2: #5cc8c2; --border: #2a2d3a; --surface: #1a1d27; }
+    [data-theme="light"] { --bg: #f4f5fa; --text: #1a1d27; --muted: #696d88; --accent2: #1e9e98; --border: #dde0ef; --surface: #ffffff; }
+
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 16px; line-height: 1.6; min-height: 100vh;
+    }
+    a { color: var(--accent2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .page { max-width: 980px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+    .top { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-size: 0.82rem; margin-bottom: 1.25rem; }
+    .top a { color: var(--muted); }
+    .top a:hover { color: var(--accent2); text-decoration: none; }
+
+    /* ── The stage: one slide at a time, everything sized in container units ── */
+    .stage {
+      --u: 1cqw;
+      container-type: inline-size;
+      position: relative; aspect-ratio: 16 / 9; width: 100%;
+      background: var(--paper); color: var(--ink);
+      border: 2px solid var(--ink2); border-radius: 14px; overflow: hidden;
+      font-family: "Patrick Hand", "Comic Sans MS", "Segoe Print", cursive;
+      outline-offset: 4px;
+    }
+    .stage::before { content: ""; position: absolute; inset: 1.2cqw; border: 1px solid var(--ink2); border-radius: 10px; pointer-events: none; opacity: 0.55; }
+    .slide { position: absolute; inset: 0; padding: 4.6cqw 5.4cqw 8.5cqw; display: none; flex-direction: column; }
+    .slide.active { display: flex; animation: pop 0.28s ease; }
+    @keyframes pop { from { opacity: 0; transform: translateY(0.8cqw); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .slide.active { animation: none; } }
+
+    .wave { position: absolute; left: 0; right: 0; bottom: 0; height: 7.5cqw; pointer-events: none; }
+    .tag { position: absolute; left: 3.2cqw; bottom: 1.6cqw; background: var(--card); border: 1.5px solid var(--ink2); border-radius: 3px; padding: 0.1cqw 1.1cqw; font-size: 1.5cqw; line-height: 1.5; }
+
+    .kick { font-size: calc(var(--u) * 1.7); letter-spacing: 0.08em; text-transform: uppercase; color: var(--rust); }
+    .hd { font-family: "Caveat Brush", "Patrick Hand", cursive; line-height: 1.05; color: var(--ink); }
+    .h-xl { font-size: calc(var(--u) * 7); text-transform: uppercase; }
+    .h-l { font-size: calc(var(--u) * 5.4); }
+    .h-m { font-size: calc(var(--u) * 4.4); }
+    /* the marker stroke under a phrase */
+    .mark { background: linear-gradient(transparent 52%, var(--peach) 52%, var(--peach) 92%, transparent 92%); padding: 0 0.6cqw; border-radius: 4px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+    .sub { font-size: calc(var(--u) * 2.4); color: var(--ink2); margin-top: 1.2cqw; line-height: 1.3; }
+    .small { font-size: calc(var(--u) * 1.9); color: var(--ink2); line-height: 1.3; }
+    .grow { flex: 1; display: flex; align-items: center; min-height: 0; }
+    .row { display: flex; gap: 2cqw; align-items: stretch; width: 100%; }
+    .col { display: flex; flex-direction: column; gap: 1.4cqw; }
+    .lft { flex: 0 0 36%; }
+
+    .box { background: var(--card); border: 2px solid var(--ink); border-radius: 10px 12px 10px 13px; padding: 1.4cqw 1.8cqw; }
+    .box.peach { background: var(--peach); }
+    .box.teal { background: var(--teal); }
+    .box.dark { background: var(--ink); color: #f3efe3; }
+    .box.dash { border-style: dashed; border-color: var(--rust); background: transparent; color: var(--rust); }
+    .box h3 { font-family: "Caveat Brush", "Patrick Hand", cursive; font-weight: 400; font-size: calc(var(--u) * 3); line-height: 1.1; }
+    .box p { font-size: calc(var(--u) * 2); line-height: 1.25; margin-top: 0.4cqw; }
+    .chip { display: inline-block; background: var(--card); border: 1.5px solid var(--ink); border-radius: 9px 11px 9px 12px; padding: 0.4cqw 1.5cqw; font-size: calc(var(--u) * 2.2); }
+    .chip.on { background: var(--teal); }
+    .chip.dash { border-style: dashed; border-color: var(--rust); color: var(--rust); background: transparent; }
+    .con { background: var(--con-bg); border: 1.5px solid var(--con-line); border-radius: 6px 8px 6px 9px; padding: 1.1cqw 1.6cqw; transform: rotate(0.6deg); box-shadow: 0.3cqw 0.4cqw 0 rgba(0,0,0,0.08); }
+    .con b { font-family: "Caveat Brush", "Patrick Hand", cursive; font-weight: 400; font-size: calc(var(--u) * 2.6); color: var(--con-line); display: block; line-height: 1.1; }
+    .con span { font-size: calc(var(--u) * 2); line-height: 1.25; display: block; }
+    .note { background: var(--peach); border: 2px solid var(--ink); border-radius: 7px 9px 7px 10px; padding: 1cqw 1.6cqw; font-family: "Caveat Brush", "Patrick Hand", cursive; font-size: calc(var(--u) * 2.6); line-height: 1.15; transform: rotate(-1.6deg); box-shadow: 0.35cqw 0.45cqw 0 rgba(0,0,0,0.18); }
+    .arrow { flex: none; align-self: center; font-family: "Caveat Brush", cursive; font-size: calc(var(--u) * 5); color: var(--rust); line-height: 1; }
+    .big { font-family: "Caveat Brush", "Patrick Hand", cursive; line-height: 0.95; color: var(--ink); }
+    .big.n { font-size: calc(var(--u) * 11); }
+    .rust { color: var(--rust); }
+    .center { text-align: center; align-items: center; justify-content: center; }
+    .shot { border: 2px solid var(--ink); border-radius: 10px; overflow: hidden; background: #fff; box-shadow: 0.5cqw 0.6cqw 0 rgba(0,0,0,0.12); }
+    .shot img { display: block; width: 100%; height: auto; }
+
+    /* ── Controls under the stage ── */
+    .ctl { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1rem; }
+    .ctl button { white-space: nowrap; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 999px; padding: 0.4em 1.1em; font-size: 0.9rem; cursor: pointer; }
+    .ctl button:hover:not(:disabled) { border-color: var(--accent2); color: var(--accent2); }
+    .ctl button:disabled { opacity: 0.4; cursor: default; }
+    .dots { display: flex; gap: 0.45rem; align-items: center; flex-wrap: wrap; justify-content: center; }
+    .dot { width: 0.65rem; height: 0.65rem; padding: 0 !important; border-radius: 50% !important; border: 1.5px solid var(--muted) !important; background: transparent !important; }
+    .dot.active { background: var(--accent2) !important; border-color: var(--accent2) !important; }
+    .count { color: var(--muted); font-size: 0.8rem; text-align: center; margin-top: 0.6rem; }
+
+    /* narrow screens: a taller sheet, bigger type, stacked rows */
+    @media (max-width: 640px) {
+      .page { padding: 1.25rem 1rem 2rem; }
+      .stage { --u: 1.85cqw; aspect-ratio: 3 / 4; }
+      .slide { padding: 6cqw 6cqw 14cqw; }
+      .row { flex-direction: column; gap: 3cqw; }
+      .row.keep { flex-direction: row; }
+      .lft { flex: none; }
+      .ctl { gap: 0.5rem; }
+      .dots { gap: 0.3rem; }
+      .dot { width: 0.5rem !important; height: 0.5rem !important; }
+      .row.grid4 { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5cqw; }
+      .arrow { transform: rotate(90deg); align-self: center; }
+      .tag { font-size: 3cqw; bottom: 2.6cqw; }
+      .wave { height: 11cqw; }
+      .h-xl { font-size: calc(var(--u) * 6.2); }
+      .stage::before { inset: 2cqw; }
+      .hide-m { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="top">
+    <a href="career-agent.html">← Full brief</a>
+    <a href="index.html">Portfolio</a>
+  </div>
+
+  <div class="stage" id="stage" tabindex="0" aria-roledescription="carousel" aria-label="Career Agent in 9 slides">
+
+    <!-- 1 -->
+    <section class="slide active" aria-label="Slide 1 of 9">
+      <div><span class="chip" style="font-size:calc(var(--u)*2)">AI Career Agent</span></div>
+      <div class="grow"><div class="col" style="gap:1.6cqw;">
+        <h1 class="hd h-xl">A CV doesn’t get you hired.</h1>
+        <div><span class="hd h-l mark">It gets you invited.</span></div>
+        <p class="sub" style="margin-top:0.6cqw;">So decide first. Write second. →</p>
+      </div></div>
+    </section>
+
+    <!-- 2 -->
+    <section class="slide" aria-label="Slide 2 of 9">
+      <span class="kick">The problem</span>
+      <h2 class="hd h-l">Climbing the <span class="mark">wrong wall</span></h2>
+      <div class="grow"><div class="row" style="align-items:center;">
+        <div class="col" style="flex:1.2;">
+          <div class="big n">30–90<span style="font-size:0.45em;"> min</span></div>
+          <p class="sub" style="margin-top:0;">to tailor one CV, <b>before</b> you know if you have a shot.</p>
+        </div>
+        <div class="col" style="flex:1;">
+          <div class="box"><h3>Dozens of vacancies a day</h3><p>Weeks of effort. No result guaranteed.</p></div>
+          <div class="note" style="align-self:flex-start;">Months to learn where the gap is</div>
+        </div>
+      </div></div>
+    </section>
+
+    <!-- 3 -->
+    <section class="slide" aria-label="Slide 3 of 9">
+      <span class="kick">Why it keeps happening</span>
+      <h2 class="hd h-m">Three things go wrong <span class="mark">every time</span></h2>
+      <div class="grow"><div class="col" style="width:100%; gap:1.5cqw;">
+        <div class="row keep">
+          <div class="box" style="flex:1;"><h3>Fit is felt, not measured</h3><p>First impression anchors the decision.</p></div>
+          <div class="box" style="flex:1;"><h3>Barriers show up late</h3><p>After the effort is already spent.</p></div>
+          <div class="box" style="flex:1;"><h3>Wrong jobs get CVs</h3><p>Some should never be submitted.</p></div>
+        </div>
+        <div class="row keep" style="align-items:center;">
+          <div class="box peach" style="flex:none; text-align:center;">
+            <div class="big" style="font-size:calc(var(--u)*5.2);">10 / 10 <span class="rust">→</span> 4 / 10</div>
+          </div>
+          <p class="small" style="font-size:calc(var(--u)*2.1);">Real case: I rated a vacancy 10. The system said 4. One hidden requirement, missed on first read.</p>
+        </div>
+      </div></div>
+    </section>
+
+    <!-- 4 -->
+    <section class="slide" aria-label="Slide 4 of 9">
+      <span class="kick">The idea</span>
+      <h2 class="hd h-l">Decision <span class="mark">before</span> document</h2>
+      <p class="sub">Nothing is written until there is a clear go / no-go.</p>
+      <div class="grow"><div class="row" style="align-items:center;">
+        <div class="box teal" style="flex:none;"><h3>Vacancy</h3></div>
+        <span class="arrow">→</span>
+        <div class="box dark" style="flex:none;"><h3>Fit score</h3></div>
+        <span class="arrow">→</span>
+        <div class="col" style="flex:1; align-items:flex-start;">
+          <div class="chip on">apply</div>
+          <div class="chip">take a chance</div>
+          <div class="chip dash">decline = stop. no CV, no cost</div>
+        </div>
+      </div></div>
+      <div class="con" style="align-self:flex-start;"><b>Most AI CV tools</b><span>optimize writing the document, not whether it is worth writing.</span></div>
+    </section>
+
+    <!-- 5 -->
+    <section class="slide" aria-label="Slide 5 of 9">
+      <span class="kick">How it works</span>
+      <h2 class="hd h-l">From a posting to an <span class="mark">invitation</span></h2>
+      <div class="grow"><div class="row" style="align-items:stretch;">
+        <div class="box teal" style="flex:1;"><h3>1. Arrives</h3><p>Pulled in by RSS or pasted. Lands in the inbox.</p></div>
+        <div class="box" style="flex:1;"><h3>2. Cheap check</h3><p>A small model flags obvious non-fits.</p></div>
+        <div class="box dark" style="flex:1;"><h3>3. Analysis</h3><p>Real pain, hidden barriers, fit score.</p></div>
+        <div class="box peach" style="flex:1;"><h3>4. CV + cover</h3><p>Built from real experience, self-reviewed.</p></div>
+      </div></div>
+      <p class="small">You decide twice: <b>apply or skip</b>, and <b>approve or reject</b> the CV.</p>
+    </section>
+
+    <!-- 6 -->
+    <section class="slide" aria-label="Slide 6 of 9">
+      <div class="grow" style="min-height:0;"><div class="row" style="align-items:center; height:100%;">
+        <div class="col lft">
+          <span class="kick">What you see</span>
+          <h2 class="hd h-m">One screen, <span class="mark">one recommendation</span></h2>
+          <p class="sub">Fit score, North Star, barriers and a plain recommendation.</p>
+        </div>
+        <div class="shot" style="flex:1; min-width:0; min-height:0; align-self:center;">
+          <img src="asset/screens/03-analysis.png" alt="The analysis screen of the app: fit score, North Star, barriers, recommendation">
+        </div>
+      </div></div>
+    </section>
+
+    <!-- 7 -->
+    <section class="slide" aria-label="Slide 7 of 9">
+      <span class="kick">Three choices that shaped it</span>
+      <h2 class="hd h-m">Spend the <span class="mark">expensive</span> step last</h2>
+      <div class="grow"><div class="row">
+        <div class="box" style="flex:1;"><h3>Cheap before smart</h3><p>A vacancy that cannot fit never gets a real AI call.</p></div>
+        <div class="box" style="flex:1;"><h3>Rules vs thinking</h3><p>~43 mixed steps became a handful of real AI decisions.</p></div>
+        <div class="box" style="flex:1;"><h3>Human stays in</h3><p>It never applies on its own. Two calls are yours.</p></div>
+      </div></div>
+      <div class="note" style="align-self:flex-end;">Most “AI problems” were workflow problems</div>
+    </section>
+
+    <!-- 8 -->
+    <section class="slide" aria-label="Slide 8 of 9">
+      <span class="kick">Real search, real numbers</span>
+      <h2 class="hd h-m">Run on <span class="mark">live vacancies</span>, not demos</h2>
+      <div class="grow"><div class="col" style="width:100%; gap:2cqw;">
+        <div class="row keep grid4">
+          <div class="box" style="flex:1; text-align:center;"><div class="big n" style="font-size:calc(var(--u)*7.5);">1,850</div><p>vacancies in</p></div>
+          <div class="box" style="flex:1; text-align:center;"><div class="big n" style="font-size:calc(var(--u)*7.5);">257</div><p>analysed</p></div>
+          <div class="box" style="flex:1; text-align:center;"><div class="big n" style="font-size:calc(var(--u)*7.5);">116</div><p>tailored CVs</p></div>
+          <div class="box peach" style="flex:1; text-align:center;"><div class="big n" style="font-size:calc(var(--u)*7.5);">123</div><p>applications sent</p></div>
+        </div>
+        <p class="small">About <b>$0.32</b> per vacancy, fetch to cover letter (measured on one model generation; it moves as models and prices change). A snapshot since June.</p>
+      </div></div>
+    </section>
+
+    <!-- 9 -->
+    <section class="slide center" aria-label="Slide 9 of 9">
+      <div style="display:flex; gap:1.2cqw; flex-wrap:wrap; justify-content:center;" class="hide-m">
+        <span class="chip on">Recommendation first</span><span class="chip">CV first</span><span class="chip dash">yours?</span>
+      </div>
+      <div class="grow center" style="flex-direction:column;"><div class="col" style="gap:1.4cqw; align-items:center;">
+        <h2 class="hd h-l">Would you rather get a <span class="mark">recommendation</span> first?</h2>
+        <p class="sub" style="max-width:70%;">The full brief has the decisions, the pipeline and the unit economics.</p>
+        <p class="sub" style="margin-top:0.4cqw;"><a href="career-agent.html" style="color:var(--rust); text-decoration:underline;">Read the full brief →</a></p>
+      </div></div>
+    </section>
+
+    <svg class="wave" viewBox="0 0 1000 75" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 45 C 120 15, 220 15, 340 40 S 560 70, 680 42 S 880 18, 1000 38 L1000 75 L0 75 Z" fill="#f6d3b3"/>
+      <path d="M0 52 C 120 28, 220 28, 340 50 S 560 72, 680 50 S 880 30, 1000 48" fill="none" stroke="#4a9b93" stroke-width="2" stroke-dasharray="9 7"/>
+    </svg>
+    <div class="tag">Alex Bondarenko</div>
+  </div>
+
+  <div class="ctl">
+    <button id="prev" type="button" aria-label="Previous slide">← Back</button>
+    <div class="dots" id="dots"></div>
+    <button id="next" type="button" aria-label="Next slide">Next →</button>
+  </div>
+  <div class="count" id="count" aria-live="polite"></div>
+</div>
+
+<script>
+  (function () {
+    try {
+      const t = localStorage.getItem('theme');
+      if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+    const stage = document.getElementById('stage');
+    const slides = [...stage.querySelectorAll('.slide')];
+    const dots = document.getElementById('dots');
+    const prev = document.getElementById('prev'), next = document.getElementById('next'), count = document.getElementById('count');
+    let i = 0;
+    slides.forEach((s, n) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'dot'; b.setAttribute('aria-label', 'Slide ' + (n + 1));
+      b.addEventListener('click', () => show(n));
+      dots.appendChild(b);
+    });
+    function show(n, fromHash) {
+      i = Math.max(0, Math.min(slides.length - 1, n));
+      slides.forEach((s, k) => s.classList.toggle('active', k === i));
+      dots.querySelectorAll('.dot').forEach((d, k) => d.classList.toggle('active', k === i));
+      prev.disabled = i === 0; next.disabled = i === slides.length - 1;
+      count.textContent = (i + 1) + ' / ' + slides.length;
+      if (!fromHash) { try { history.replaceState(null, '', '#' + (i + 1)); } catch (e) {} }
+    }
+    prev.addEventListener('click', () => show(i - 1));
+    next.addEventListener('click', () => show(i + 1));
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') show(i + 1);
+      if (e.key === 'ArrowLeft' || e.key === 'PageUp') show(i - 1);
+    });
+    let x0 = null;
+    stage.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener('touchend', e => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1));
+    });
+    const h = parseInt(location.hash.slice(1), 10);
+    show(isNaN(h) ? 0 : h - 1, true);
+  })();
+</script>
+</body>
+</html>

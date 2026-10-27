@@ -36,8 +36,6 @@ Most AI CV tools optimize document generation — not the decision of whether ge
 * Saves 90% of the user's time and effort.  
 * Scoped to one vertical: Product Managers and Product Owners.
 
-![Career Agent — Flutter Desktop interface](asset/Flutter%20Main%20Screen.png)
-
 ---
 
 ## Key Decisions
@@ -72,19 +70,19 @@ Vacancies are pushed to the user instead of being searched for manually. RSS int
 
 ### 5. Cost-gating pre-filter before any real reasoning
 
-A cheap check runs before the vacancy ever reaches the deep-analysis step: deterministic title/domain matching, with an optional LLM pass for less obvious cases. A vacancy that can't possibly be a fit never gets a real LLM call.
+A cheap check runs before the vacancy ever reaches the deep-analysis step: deterministic title/domain matching, with an optional AI pass for less obvious cases. A vacancy that can't possibly be a fit never gets a real AI call.
 
 *Why:* cost discipline has to start before the expensive step, not after it.
 
 ### 6. Deterministic vs cognitive split
 
-The pipeline separates deterministic operations (file ops, dedup, PDF rendering) from genuine LLM reasoning — shipped: ~43 originally mixed steps collapsed down to a handful of real cognitive decision points.
+The pipeline separates deterministic operations (file ops, dedup, PDF rendering) from genuine AI reasoning — shipped: ~43 originally mixed steps collapsed down to a handful of real cognitive decision points.
 
 *Why:* most workflow steps need no intelligence. They add latency and cost for nothing.
 
 ### 7. A second editorial pass, gated by outcome not by default
 
-A dedicated editorial-review pass runs only when a vacancy already cleared the fit bar (`apply`, high score) — checking for AI-tell writing patterns, credibility, and accidental echoes of the job posting's own language. Verified empirically that an LLM auditing its own just-written text in the same context is measurably more lenient than a fresh, isolated pass on identical text — so the audit runs isolated from the drafting step, not chained onto it.
+A dedicated editorial-review pass runs only when a vacancy already cleared the fit bar (`apply`, high score) — checking for AI-tell writing patterns, credibility, and accidental echoes of the job posting's own language. Verified empirically that an AI auditing its own just-written text in the same context is measurably more lenient than a fresh, isolated pass on identical text — so the audit runs isolated from the drafting step, not chained onto it.
 
 *Why:* thorough checking should be reserved for vacancies worth the effort. Running this same expensive audit on every CV, including ones for jobs that were never a real fit, would make the whole system too expensive to run.
 
@@ -95,7 +93,7 @@ A dedicated editorial-review pass runs only when a vacancy already cleared the f
 The pipeline, end to end:
 
 1. **Vacancy ingestion** — auto via RSS, saved straight to the database and surfaced in the Flutter inbox; a Telegram push is just a heads-up, not the destination. Manual URL/paste goes straight to the inbox the same way
-2. **Critical Blocker pre-filter** — cheap deterministic + optional LLM check; an obvious non-fit is flagged before real analysis spend
+2. **Critical Blocker pre-filter** — cheap deterministic + optional AI check; an obvious non-fit is flagged before real analysis spend
 3. **Deep analysis** — employer's real pain, hidden requirements, role archetype, vacancy attractiveness
 4. **Fit scoring** — candidate fit combined with vacancy attractiveness → `apply` / `take a chance` / `decline`
 5. **Barrier identification** — what stands between this candidate and this role
@@ -103,7 +101,7 @@ The pipeline, end to end:
 7. **CV generation** — from real experience, tailored to the JD's actual pain
 8. **CV self-review** — a dedicated pass checks the draft against the adaptation plan before the user ever sees it
 9. **Cover letter generation** — two variants, user picks
-10. **Editorial audit** *(opt-in)* — a second LLM pass, run only for genuinely strong matches, checks the CV and cover for naturalness, credibility, and phrasing that accidentally echoes the job posting's own wording back at the employer
+10. **Editorial audit** *(opt-in)* — a second AI pass, run only for genuinely strong matches, checks the CV and cover for naturalness, credibility, and phrasing that accidentally echoes the job posting's own wording back at the employer
 
 The candidate approves/declines and reviews the CV. Both documents are downloaded straight from the Flutter app — Telegram is used only for the initial "new vacancy" push, not document delivery.
 
@@ -111,19 +109,23 @@ The candidate approves/declines and reviews the CV. Both documents are downloade
 
 ## Outcomes & Evidence
 
-* 700+ vacancies ingested, ~100 fully analyzed, in a real active search
+* 1,850 vacancies ingested since June, 257 fully analyzed, 116 tailored CVs and 71 cover letters generated, 123 applications sent, in a real active search
 * End-to-end pipeline operational — analyze → CV → cover letter
-* Cost measured and tracked at execution level
-* Prompt caching live
+* A cheap pre-filter on a small model (Claude Haiku) runs before any deep analysis; the stronger models work only on vacancies that clear it
+* Cost measured and tracked at execution level; prompt caching live
 * Run on real vacancies, not synthetic examples
+
+*The numbers here are a snapshot: they change with the search, and the cost figures below change with the models.*
 
 ---
 
 ## Unit Economics
 
-Cost of service: **~$0.32 per vacancy** — full pipeline, fetch through cover letter, on Claude Sonnet 4.6 with prompt caching.
+Cost of service: **~$0.32 per vacancy** — full pipeline, fetch through cover letter, measured on Claude Sonnet 4.6 with prompt caching. The pipeline has since moved to newer models and added the cheap Haiku pre-filter, so today's figure differs.
 
 Cost tracking is built into the platform and recorded per run. That visibility wasn't an afterthought — it changed architectural priorities: it justified prompt caching and put the deterministic/cognitive split on the roadmap.
+
+*Prices change as models evolve, so we do not always manage to recalculate these figures right away. Unit economics is tracked continuously and re-measured, not set once.*
 
 ---
 
@@ -149,4 +151,4 @@ The highest-value decisions in the workflow (apply/skip, approve/reject) remain 
 
 ## Interface
 
-**Flutter Desktop is the primary interface** — a dedicated workspace where auto-analyzed vacancies arrive in an inbox with fit verdict, barrier breakdown, and CV/cover preview built in. The candidate makes decisions from one screen, not a step-by-step chat flow; Telegram is now push-notification-only.
+**Flutter Desktop is the primary interface** — a dedicated workspace where auto-analyzed vacancies arrive in an inbox with fit score and recommendation, barrier breakdown, and CV/cover preview built in. The candidate makes decisions from one screen, not a step-by-step chat flow; Telegram is now push-notification-only.

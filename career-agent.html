@@ -189,6 +189,69 @@
     .footer a:hover { color: var(--accent2); text-decoration: none; }
     .footer-copy { font-size: 0.78rem; opacity: 0.7; }
 
+    /* Personas */
+    .pg { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 1rem; }
+    .pc { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+    .pt { font-size: 1rem; font-weight: 600; }
+    .ps { font-size: 0.8rem; color: var(--muted); }
+    .badge { display: inline-block; font-size: 0.7rem; padding: 2px 8px; border-radius: 8px; background: var(--tag-bg); color: var(--accent); width: fit-content; margin-bottom: 6px; }
+    .k { font-size: 0.7rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+    .v { font-size: 0.85rem; line-height: 1.4; }
+    .v.pain { color: var(--danger); }
+    .anti { margin-top: 12px; border: 1px dashed var(--border); border-radius: 12px; padding: 10px 14px; font-size: 0.85rem; color: var(--muted); }
+
+    /* Journey map */
+    .scroll { overflow-x: auto; margin-top: 1rem; }
+    .ujm { display: grid; grid-template-columns: 110px repeat(6, minmax(0, 1fr)); min-width: 780px; font-size: 0.8rem; line-height: 1.4; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--surface); }
+    .ujm > div { padding: 8px; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); }
+    .ujm > div:nth-child(7n) { border-right: none; }
+    .lab { color: var(--muted); font-weight: 600; background: var(--tag-bg); }
+    .stage { font-weight: 600; background: var(--tag-bg); text-align: center; }
+    .help { background: var(--tag-bg); color: var(--accent); }
+    .pain { color: var(--danger); }
+    .emo { grid-column: 2 / span 6; padding: 0 !important; border-right: none !important; }
+    .last { border-bottom: none !important; }
+
+    /* Flow */
+    .flow svg { width: 100%; height: auto; margin-top: 1rem; }
+    .flow text { font-family: inherit; fill: var(--text); font-size: 14px; }
+    .flow .ts { font-size: 12px; fill: var(--muted); }
+    .flow .th { font-weight: 600; }
+    .cp rect, .cp polygon { fill: var(--p-fill); stroke: var(--p-stroke); stroke-width: 1; } .cp text { fill: var(--p-text); }
+    .ca rect, .ca polygon { fill: var(--a-fill); stroke: var(--a-stroke); stroke-width: 1; } .ca text { fill: var(--a-text); }
+    .cg rect, .cg polygon { fill: var(--g-fill); stroke: var(--g-stroke); stroke-width: 1; } .cg text { fill: var(--g-text); }
+    .arr { stroke: var(--muted); stroke-width: 1.5; fill: none; }
+
+    
+    /* ── Users section tokens ── */
+    [data-theme="light"] .users { --danger: #b3382f; --p-fill: #eeedfe; --p-stroke: #534ab7; --p-text: #3c3489; --a-fill: #faeeda; --a-stroke: #854f0b; --a-text: #633806; --g-fill: #f1efe8; --g-stroke: #5f5e5a; --g-text: #444441; }
+    [data-theme="dark"] .users { --danger: #f09595; --p-fill: #3c3489; --p-stroke: #afa9ec; --p-text: #cecbf6; --a-fill: #633806; --a-stroke: #fac775; --a-text: #faeeda; --g-fill: #444441; --g-stroke: #b4b2a9; --g-text: #d3d1c7; }
+    .users h2 { display: none; }
+    .users .lead, .sol-diagram .lead { color: var(--muted); margin: 0.5rem 0 0.75rem; }
+    .users .note { font-size: 0.85rem; color: var(--muted); margin-top: 0.75rem; }
+    /* ── Group tabs (top level) ── */
+    .grp-tabs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1.5rem 0 1.25rem; }
+    .grp-tab { background: var(--surface); border: 1px solid var(--border); border-radius: 999px; color: var(--muted); font-size: 0.85rem; font-weight: 600; padding: 0.4em 1.1em; cursor: pointer; transition: all var(--transition); }
+    .grp-tab:hover { color: var(--text); }
+    .grp-tab.active { color: #fff; background: var(--accent); border-color: var(--accent); }
+    .grp-panel { display: none; }
+    .grp-panel.active { display: block; }
+    .grp-panel > h2:first-child { margin-top: 0.5rem; }
+
+
+    /* ── Screens carousel ── */
+    .shots { margin: 1.5rem 0 1rem; }
+    .shots-frame { position: relative; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--surface); }
+    .shots-frame img { width: 100%; height: auto; display: block; margin: 0; max-width: none; }
+    .shots-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 2.4rem; height: 2.4rem; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-size: 1.1rem; cursor: pointer; opacity: 0.9; }
+    .shots-btn:hover { color: var(--accent); }
+    .shots-prev { left: 0.6rem; } .shots-next { right: 0.6rem; }
+    .shots-cap { margin-top: 0.75rem; font-size: 0.9rem; color: var(--muted); min-height: 2.7em; }
+    .shots-dots { display: flex; gap: 0.45rem; margin-top: 0.5rem; }
+    .shots-dot { width: 9px; height: 9px; border-radius: 50%; border: none; background: var(--border); cursor: pointer; padding: 0; }
+    .shots-dot.active { background: var(--accent); }
+
+    @media (max-width: 760px) { .pg { grid-template-columns: 1fr; } }
     @media (max-width: 480px) {
       .page { padding: 2.5rem 1.25rem 2rem; }
       .controls { top: 0.75rem; right: 0.75rem; }
@@ -209,6 +272,7 @@
   <div class="page">
 
     <a href="index.html" class="back">← Portfolio</a>
+    <a href="career-agent-slides.html" class="back" style="margin-left:1.5rem;">The same in 9 slides →</a>
 
     <div id="content" class="md-body">
       <p class="state">Loading…</p>
@@ -224,6 +288,122 @@
     </footer>
 
   </div>
+
+<template id="users-tpl">
+<div class="users">
+  <div class="sol-tabs">
+    <button class="sol-tab active" data-tab="ppl">Personas</button>
+    <button class="sol-tab" data-tab="jm">Journey map</button>
+    <button class="sol-tab" data-tab="uf">User flow</button>
+  </div>
+  <div class="sol-panel active" data-panel="ppl">
+<p class="lead">The ICP is a Product Manager, Product Owner or Project Manager in an active job search. Three personas, and one anti-persona.</p>
+
+    <div class="pg">
+      <div class="pc">
+        <div><span class="badge">Core ICP</span><p class="pt">Experienced PdM on the international market</p><p class="ps">5–10 years, Middle/Senior, Ukraine, remote</p></div>
+        <div><p class="k">Goal</p><p class="v">Understand fit quickly and apply precisely, not blindly</p></div>
+        <div><p class="k">Context</p><p class="v">Almost all applications go abroad, English B2, several vacancies a day</p></div>
+        <div><p class="k">Pains</p><p class="v pain">Noise and reposted jobs. Blockers (English C1, region, domain) hidden in the text. A tailored CV per vacancy takes hours</p></div>
+        <div><p class="k">Needs from the product</p><p class="v">An honest fit and the blockers before time is spent. A CV and a cover letter built from the profile, without inventions</p></div>
+        <div><p class="k">Success</p><p class="v">Fewer edits before the final text, more interview invitations</p></div>
+      </div>
+
+      <div class="pc">
+        <div><span class="badge">Growing</span><p class="pt">Product Owner from outsourcing moving to a product company</p><p class="ps">3–6 years, strong delivery</p></div>
+        <div><p class="k">Goal</p><p class="v">Show discovery and metrics, not only delivery</p></div>
+        <div><p class="k">Context</p><p class="v">The CV describes sprints and backlog, little about customers and results</p></div>
+        <div><p class="k">Pains</p><p class="v pain">Does not know which words of the vacancy to reflect. Afraid of embellishing and inventing</p></div>
+        <div><p class="k">Needs from the product</p><p class="v">A hint of what is missing against the vacancy's keywords. A "facts from the profile only" rule</p></div>
+        <div><p class="k">Success</p><p class="v">The CV matches the language of the vacancy and stays honest</p></div>
+      </div>
+
+      <div class="pc">
+        <div><span class="badge">Transition</span><p class="pt">Project Manager moving into Product</p><p class="ps">5+ years of project experience</p></div>
+        <div><p class="k">Goal</p><p class="v">Translate the experience into product language</p></div>
+        <div><p class="k">Context</p><p class="v">The CV reads like managing tasks and deadlines</p></div>
+        <div><p class="k">Pains</p><p class="v pain">Bureaucratic wording and calques from English. Few results in metrics. Does not know which metrics an interview will ask about</p></div>
+        <div><p class="k">Needs from the product</p><p class="v">Rewording into practices and results. A reference of metrics for interview preparation</p></div>
+        <div><p class="k">Success</p><p class="v">Passes the screening for PdM and PO roles</p></div>
+      </div>
+    </div>
+    <div class="anti"><strong>Not our persona.</strong> Someone who wants a mass mailing of one and the same CV to everything: an honest fit and a precise adaptation get in the way.</div>
+
+
+  </div>
+  <div class="sol-panel" data-panel="jm">
+<p class="lead">Six stages from being stuck in the search to waiting for the interview. The mood curve is a hypothesis from the first user's path.</p>
+
+    <div class="scroll">
+      <div class="ujm" role="table" aria-label="User journey map of an active job seeker in six stages">
+        <div class="lab"></div>
+        <div class="stage">1. Stuck in the search</div>
+        <div class="stage">2. Looking for vacancies</div>
+        <div class="stage">3. Judging the fit</div>
+        <div class="stage">4. Preparing CV and cover</div>
+        <div class="stage">5. Applying</div>
+        <div class="stage">6. Waiting and interview</div>
+
+        <div class="lab">Actions</div>
+        <div>Scrolls job boards</div><div>Filters, saves</div><div>Reads the description</div><div>Adapts the CV</div><div>Sends the application</div><div>Waits, prepares</div>
+
+        <div class="lab">Thoughts</div>
+        <div>Hundreds of vacancies, which one fits?</div><div>Do not miss the fresh ones</div><div>Is it worth the time?</div><div>How to show the point?</div><div>Do not slip in the text</div><div>Why the silence?</div>
+
+        <div class="lab">Emotions</div>
+        <div class="emo"><svg width="100%" viewBox="0 0 600 64" role="img" aria-label="Emotion curve across the six stages"><title>Emotion curve</title><desc>Mood starts low, rises while preparing documents, dips while waiting.</desc><line x1="0" y1="32" x2="600" y2="32" stroke="var(--border)" stroke-width="1" stroke-dasharray="3 4"/><polyline fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="50,50 150,44 250,30 350,14 450,26 550,38"/><g fill="var(--accent)"><circle cx="50" cy="50" r="4"/><circle cx="150" cy="44" r="4"/><circle cx="250" cy="30" r="4"/><circle cx="350" cy="14" r="4"/><circle cx="450" cy="26" r="4"/><circle cx="550" cy="38" r="4"/></g></svg></div>
+
+        <div class="lab">Pains</div>
+        <div class="pain">Noise, little time</div><div class="pain">Duplicates, reposted jobs</div><div class="pain">Blockers hidden in the text</div><div class="pain">Slow, repetitive, calques</div><div class="pain">Versions: which file is final</div><div class="pain">No feedback</div>
+
+        <div class="lab">Touchpoints</div>
+        <div>Job boards, LinkedIn</div><div>RSS, push notifications</div><div>Vacancy card, analysis</div><div>Generation, block-by-block edits</div><div>Markdown and PDF</div><div>Interview preparation</div>
+
+        <div class="lab help">Where the product helps</div>
+        <div class="help last">The Inbox collects vacancies by itself</div><div class="help last">New ones apart, reposts marked</div><div class="help last">Fit, blockers, North Star</div><div class="help last">A draft built from the profile</div><div class="help last">Final text, PDF, Applied mark</div><div class="help last">Preparation, edit count</div>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="sol-panel" data-panel="uf">
+<p class="lead">User flow: what the user does in the app, in one scenario. A vacancy arrives, gets analysed, and either ends declined or becomes an applied CV and cover letter.</p>
+
+    <div class="flow">
+      <svg viewBox="0 0 680 430" role="img" aria-labelledby="flow-title flow-desc">
+        <title id="flow-title">User flow from Inbox to Applied</title>
+        <desc id="flow-desc">Flowchart: vacancy in the Inbox, analysis and fit, decision to continue or decline, CV generation, block-by-block edits with a final check loop, cover letter, applied.</desc>
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+        <g class="cg"><rect x="20" y="60" width="130" height="50" rx="8"/><text class="th" x="85" y="85" text-anchor="middle" dominant-baseline="central">Vacancy in Inbox</text></g>
+        <g class="cp"><rect x="185" y="60" width="130" height="50" rx="8"/><text class="th" x="250" y="85" text-anchor="middle" dominant-baseline="central">Analysis and fit</text></g>
+        <g class="ca"><polygon points="395,40 455,85 395,130 335,85"/><text class="th" x="395" y="85" text-anchor="middle" dominant-baseline="central">Fits?</text></g>
+        <g class="cp"><rect x="495" y="60" width="130" height="50" rx="8"/><text class="th" x="560" y="85" text-anchor="middle" dominant-baseline="central">CV generation</text></g>
+        <g class="cg"><rect x="335" y="170" width="120" height="44" rx="8"/><text class="th" x="395" y="192" text-anchor="middle" dominant-baseline="central">Decline</text></g>
+        <g class="cp"><rect x="495" y="270" width="130" height="50" rx="8"/><text class="th" x="560" y="295" text-anchor="middle" dominant-baseline="central">Edits by block</text></g>
+        <g class="ca"><polygon points="395,250 455,295 395,340 335,295"/><text class="th" x="395" y="295" text-anchor="middle" dominant-baseline="central">Final?</text></g>
+        <g class="cp"><rect x="170" y="270" width="130" height="50" rx="8"/><text class="th" x="235" y="295" text-anchor="middle" dominant-baseline="central">Cover letter</text></g>
+        <g class="cg"><rect x="20" y="270" width="130" height="50" rx="8"/><text class="th" x="85" y="295" text-anchor="middle" dominant-baseline="central">Applied</text></g>
+        <line x1="150" y1="85" x2="183" y2="85" class="arr" marker-end="url(#arrow)"/>
+        <line x1="315" y1="85" x2="333" y2="85" class="arr" marker-end="url(#arrow)"/>
+        <line x1="455" y1="85" x2="493" y2="85" class="arr" marker-end="url(#arrow)"/>
+        <text class="ts" x="474" y="76" text-anchor="middle">yes</text>
+        <line x1="395" y1="130" x2="395" y2="168" class="arr" marker-end="url(#arrow)"/>
+        <text class="ts" x="408" y="152">no</text>
+        <line x1="560" y1="110" x2="560" y2="268" class="arr" marker-end="url(#arrow)"/>
+        <line x1="495" y1="295" x2="457" y2="295" class="arr" marker-end="url(#arrow)"/>
+        <line x1="335" y1="295" x2="302" y2="295" class="arr" marker-end="url(#arrow)"/>
+        <text class="ts" x="318" y="286" text-anchor="middle">yes</text>
+        <line x1="170" y1="295" x2="152" y2="295" class="arr" marker-end="url(#arrow)"/>
+        <path d="M395 340 L395 375 L560 375 L560 322" class="arr" marker-end="url(#arrow)"/>
+        <text class="ts" x="478" y="396" text-anchor="middle">no, more edits</text>
+      </svg>
+      <p class="note">The journey map answers what the user feels and wants on the way to the goal (discovery); the user flow shows the concrete sequence of steps inside the product (delivery).</p>
+    </div>
+
+
+  </div>
+</div>
+</template>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
@@ -320,11 +500,12 @@
       wrap.innerHTML = `
         <div class="sol-tabs">
           <button class="sol-tab active" data-tab="text">Overview</button>
-          <button class="sol-tab" data-tab="flow">Flow diagram</button>
+          <button class="sol-tab" data-tab="flow">System flow</button>
         </div>
         <div class="sol-panel active" data-panel="text"></div>
         <div class="sol-panel sol-diagram" data-panel="flow">
-          <img src="user-flow.svg" alt="Career Agent user flow diagram">
+          <p class="lead">System flow: what happens inside the system at each step, from ingestion to the finished documents.</p>
+          <img src="user-flow.svg" alt="Career Agent system flow diagram">
         </div>`;
 
       const textPanel = wrap.querySelector('[data-panel="text"]');
@@ -341,12 +522,150 @@
       });
     }
 
+
+
+    // ── Screens carousel (placed at the end of the Executive Summary section) ──
+    function injectScreens() {
+      const shots = [
+        { src: 'asset/screens/01-inbox.png', cap: 'Inbox: new vacancies arrive by themselves; blockers, reposts and signals are visible before any time is spent.' },
+        { src: 'asset/screens/02-preanalysis.png', cap: 'Before the analysis: the quote that triggers a blocker is highlighted right in the job text.' },
+        { src: 'asset/screens/03-analysis.png', cap: 'Full analysis: fit, North Star, role balance and the recommendation.' },
+        { src: 'asset/screens/04-requirements.png', cap: 'Why apply, why not apply, key barriers and hidden risks.' },
+        { src: 'asset/screens/05-cv.png', cap: 'A tailored CV built from the verified profile (contact line hidden).' },
+        { src: 'asset/screens/06-settings-general.png', cap: 'Settings, General: display and notifications (sample data).' },
+        { src: 'asset/screens/07-settings-ai-models.png', cap: 'Settings, AI models: provider, model and thinking effort chosen per phase (sample data).' },
+        { src: 'asset/screens/08-settings-connections.png', cap: 'Settings, Connections: backend address and one-click connection to Claude Desktop (sample data).' }
+      ];
+      const h2 = [...content.querySelectorAll(':scope > h2')].find(h => /executive summary/i.test(h.textContent));
+      if (!h2) return;
+      let last = h2; let el = h2.nextElementSibling;
+      while (el && el.tagName !== 'H2') { if (el.tagName !== 'HR') last = el; el = el.nextElementSibling; }
+      const box = document.createElement('div');
+      box.className = 'shots'; box.tabIndex = 0;
+      box.setAttribute('aria-label', 'Screenshots of the app');
+      box.innerHTML = `
+        <div class="shots-frame">
+          <img alt="">
+          <button class="shots-btn shots-prev" aria-label="Previous screenshot">‹</button>
+          <button class="shots-btn shots-next" aria-label="Next screenshot">›</button>
+        </div>
+        <div class="shots-cap"></div>
+        <div class="shots-dots"></div>`;
+      const img = box.querySelector('img'), cap = box.querySelector('.shots-cap'), dots = box.querySelector('.shots-dots');
+      let i = 0;
+      shots.forEach((s, n) => {
+        const d = document.createElement('button');
+        d.className = 'shots-dot'; d.setAttribute('aria-label', 'Screenshot ' + (n + 1));
+        d.addEventListener('click', () => show(n));
+        dots.appendChild(d);
+      });
+      function show(n) {
+        i = (n + shots.length) % shots.length;
+        img.src = shots[i].src; img.alt = shots[i].cap; cap.textContent = shots[i].cap;
+        dots.querySelectorAll('.shots-dot').forEach((d, k) => d.classList.toggle('active', k === i));
+      }
+      box.querySelector('.shots-prev').addEventListener('click', () => show(i - 1));
+      box.querySelector('.shots-next').addEventListener('click', () => show(i + 1));
+      box.addEventListener('keydown', e => {
+        if (e.key === 'ArrowLeft') show(i - 1);
+        if (e.key === 'ArrowRight') show(i + 1);
+      });
+      show(0);
+      last.after(box);
+    }
+
+    // ── Users section: personas, journey map, user flow (from the template) ──
+    function injectUsers() {
+      const tpl = document.getElementById('users-tpl');
+      if (!tpl) return;
+      const h2 = document.createElement('h2');
+      h2.textContent = 'Who it is for';
+      h2.id = 'users-h2';
+      const wrap = document.createElement('div');
+      wrap.appendChild(tpl.content.cloneNode(true));
+      // The user flow belongs to the Interface section (the path through the app), not to "Who it is for".
+      const ufPanel = wrap.querySelector('[data-panel="uf"]');
+      wrap.querySelector('[data-tab="uf"]').remove();
+      ufPanel.remove();
+      const ifaceH2 = [...content.querySelectorAll(':scope > h2')].find(h => /interface/i.test(h.textContent));
+      if (ifaceH2) {
+        let last = ifaceH2; let el = ifaceH2.nextElementSibling;
+        while (el && el.tagName !== 'H2') { if (el.tagName !== 'HR') last = el; el = el.nextElementSibling; }
+        const ufWrap = document.createElement('div');
+        ufWrap.className = 'users';
+        ufPanel.classList.add('active');
+        ufWrap.appendChild(ufPanel);
+        last.after(ufWrap);
+      }
+      content.appendChild(h2);
+      content.appendChild(wrap);
+      wrap.querySelectorAll('.sol-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+          wrap.querySelectorAll('.sol-tab').forEach(b => b.classList.remove('active'));
+          wrap.querySelectorAll('.sol-panel').forEach(p => p.classList.remove('active'));
+          btn.classList.add('active');
+          wrap.querySelector(`[data-panel="${btn.dataset.tab}"]`).classList.add('active');
+        });
+      });
+    }
+
+    // ── Group the sections into top-level tabs by meaning ──
+    function groupTabs() {
+      const groups = [
+        { id: 'overview',  label: 'Overview',  match: /executive summary/i },
+        { id: 'product',   label: 'Product',   match: /how it works|interface|who it is for/i },
+        { id: 'decisions', label: 'Decisions', match: /key decisions|key learnings/i },
+        { id: 'evidence',  label: 'Evidence',  match: /outcomes|unit economics/i }
+      ];
+      const h2s = [...content.querySelectorAll(':scope > h2')];
+      if (h2s.length < 2) return;
+      // sections: each h2 plus the siblings up to the next h2
+      const sections = h2s.map((h, i) => {
+        const nodes = [h]; let el = h.nextElementSibling;
+        while (el && el.tagName !== 'H2') { nodes.push(el); el = el.nextElementSibling; }
+        return { title: h.textContent.trim(), nodes };
+      });
+      const bar = document.createElement('div');
+      bar.className = 'grp-tabs';
+      const panels = {};
+      groups.forEach((g, i) => {
+        const b = document.createElement('button');
+        b.className = 'grp-tab' + (i === 0 ? ' active' : '');
+        b.textContent = g.label; b.dataset.grp = g.id;
+        bar.appendChild(b);
+        const p = document.createElement('div');
+        p.className = 'grp-panel' + (i === 0 ? ' active' : ''); p.dataset.grp = g.id;
+        panels[g.id] = p;
+      });
+      const orphans = [];
+      sections.forEach(s => {
+        const g = groups.find(x => x.match.test(s.title));
+        const target = g ? panels[g.id] : null;
+        s.nodes.forEach(n => (target ? target.appendChild(n) : orphans.push(n)));
+      });
+      // sections with no group stay where they were: after the panels
+      h2s[0].before ? null : null;
+      const anchor = document.createElement('div');
+      content.appendChild(anchor);
+      content.appendChild(bar);
+      groups.forEach(g => content.appendChild(panels[g.id]));
+      orphans.forEach(n => content.appendChild(n));
+      bar.querySelectorAll('.grp-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+          bar.querySelectorAll('.grp-tab').forEach(b => b.classList.remove('active'));
+          content.querySelectorAll('.grp-panel').forEach(p => p.classList.remove('active'));
+          btn.classList.add('active');
+          content.querySelector(`.grp-panel[data-grp="${btn.dataset.grp}"]`).classList.add('active');
+        });
+      });
+    }
+
     function loadBrief(lang) {
       currentLang = lang;
       localStorage.setItem('brief-lang', lang);
       setActive(lang);
       content.innerHTML = '<p class="state">Loading…</p>';
-      fetch(files[lang])
+      fetch(files[lang], { cache: 'no-cache' })
         .then(r => {
           if (!r.ok) throw new Error(r.status);
           return r.text();
@@ -355,6 +674,9 @@
           content.innerHTML = marked.parse(md);
           injectProblemVisionTabs();
           injectDiagramTab();
+          injectScreens();
+          injectUsers();
+          groupTabs();
         })
         .catch(() => {
           content.innerHTML = '<p class="state">Could not load content. Make sure the .md file is in the same folder.</p>';
