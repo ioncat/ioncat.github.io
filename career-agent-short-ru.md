@@ -1,7 +1,7 @@
 # Career Agent — Product Brief
 
 **Версия:** июль 2026  
-**Автор:** Alex Bondarenko · [LinkedIn](https://www.linkedin.com/in/alexibondarenko/) · [GitHub](https://github.com/ioncat/ai-career-agent)
+**Автор:** Alex Bondarenko · [LinkedIn](https://www.linkedin.com/in/alexibondarenko/)
   
 ---
 
