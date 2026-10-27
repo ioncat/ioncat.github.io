@@ -1,8 +1,7 @@
 # Career Agent — Product Brief
 
-**Версия:** июль 2026  
-**Автор:** Alex Bondarenko · [LinkedIn](https://www.linkedin.com/in/alexibondarenko/)
-  
+**Обновлено:** октябрь 2026
+
 ---
 
 AI-помощник для поиска работы, разработанный для продакт-менеджеров и продакт-оунеров.

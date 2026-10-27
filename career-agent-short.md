@@ -1,7 +1,6 @@
 # Career Agent — Brief
 
-**Version:** July 2026  
-**Author:** Alex Bondarenko · [LinkedIn](https://www.linkedin.com/in/alexibondarenko/)
+**Updated:** October 2026
 
 ---
 
