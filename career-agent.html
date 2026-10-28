@@ -653,15 +653,29 @@
       content.appendChild(bar);
       groups.forEach(g => content.appendChild(panels[g.id]));
       orphans.forEach(n => content.appendChild(n));
+      // The active tab lives in the URL hash (#overview, #product...), so a copied link opens the same tab
+      const showGroup = id => {
+        bar.querySelectorAll('.grp-tab').forEach(b => b.classList.toggle('active', b.dataset.grp === id));
+        content.querySelectorAll('.grp-panel').forEach(p => p.classList.toggle('active', p.dataset.grp === id));
+      };
+      const fromHash = () => {
+        const id = location.hash.slice(1);
+        showGroup(groups.some(g => g.id === id) ? id : groups[0].id);
+      };
       bar.querySelectorAll('.grp-tab').forEach(btn => {
         btn.addEventListener('click', () => {
-          bar.querySelectorAll('.grp-tab').forEach(b => b.classList.remove('active'));
-          content.querySelectorAll('.grp-panel').forEach(p => p.classList.remove('active'));
-          btn.classList.add('active');
-          content.querySelector(`.grp-panel[data-grp="${btn.dataset.grp}"]`).classList.add('active');
+          showGroup(btn.dataset.grp);
+          // pushState: back/forward works, and the page does not jump to an anchor
+          if (location.hash !== '#' + btn.dataset.grp) history.pushState(null, '', '#' + btn.dataset.grp);
         });
       });
+      hashHandler = fromHash;
+      if (location.hash) fromHash();
     }
+
+    // One hashchange listener for the whole page; groupTabs() re-points it after every (re)load of the brief
+    let hashHandler = null;
+    window.addEventListener('hashchange', () => { if (hashHandler) hashHandler(); });
 
     function loadBrief(lang) {
       currentLang = lang;
